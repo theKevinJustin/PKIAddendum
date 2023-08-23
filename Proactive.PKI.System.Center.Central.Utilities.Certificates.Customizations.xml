@@ -1,0 +1,2613 @@
+﻿<?xml version="1.0" encoding="utf-8"?><ManagementPack ContentReadable="true" SchemaVersion="2.0" OriginalSchemaVersion="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <Manifest>
+    <Identity>
+      <ID>Proactive.PKI.System.Center.Central.Utilities.Certificates.Customizations</ID>
+      <Version>1.0.1.2</Version>
+    </Identity>
+    <Name>Proactive PKI System Center Central Utilities Certificates Customizations</Name>
+    <References>
+      <Reference Alias="MSIGL">
+        <ID>Microsoft.SystemCenter.InstanceGroup.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SC">
+        <ID>Microsoft.SystemCenter.Library</ID>
+        <Version>7.0.8433.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="System">
+        <ID>System.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Utilities">
+        <ID>SystemCenterCentral.Utilities.Certificates</ID>
+        <Version>1.4.3.0</Version>
+        <PublicKeyToken>e5c80663d573f08c</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Windows">
+        <ID>Microsoft.Windows.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="Proactive.CA.OCSP.Recurring.Certificates.Group" Accessibility="Public" Abstract="false" Base="MSIGL!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Proactive.Computer.Certificates.Group" Accessibility="Public" Abstract="false" Base="MSIGL!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Proactive.Domain.Controller.Kerberos.AutoEnrollment.Certificates.Group" Accessibility="Public" Abstract="false" Base="MSIGL!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Proactive.RDPAuth.Computer.Certificates.Group" Accessibility="Public" Abstract="false" Base="MSIGL!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Proactive.MECM.SCCM.ConfigMgrServerCert.Certificates.Group" Accessibility="Public" Abstract="false" Base="MSIGL!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Proactive.MECM.SCCM.ConfigMgrClientCert.Certificates.Group" Accessibility="Public" Abstract="false" Base="MSIGL!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Proactive.MECM.SCCM.ConfigMgrWebServerCert.Certificates.Group" Accessibility="Public" Abstract="false" Base="MSIGL!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Proactive.MECM.SCCM.ConfigMgrWinPEImages.Certificates.Group" Accessibility="Public" Abstract="false" Base="MSIGL!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Proactive.Internal.Issuing.CA.Group" Accessibility="Public" Abstract="false" Base="MSIGL!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Proactive.External.Issuing.CA.Group" Accessibility="Public" Abstract="false" Base="MSIGL!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Proactive.MECM.SCCM.SMSIssuing.Certificate.Group" Accessibility="Public" Abstract="false" Base="MSIGL!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Proactive.SolarWinds.Certificate.Group" Accessibility="Public" Abstract="false" Base="MSIGL!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Proactive.Splunk.Certificate.Group" Accessibility="Public" Abstract="false" Base="MSIGL!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Proactive.VEEAM.Certificate.Group" Accessibility="Public" Abstract="false" Base="MSIGL!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.RemoteDesktopCertificate" Accessibility="Public" Abstract="false" Base="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" Hosted="true" Singleton="false" Extension="false" />
+      </ClassTypes>
+    </EntityTypes>
+    <ModuleTypes>
+      <DataSourceModuleType ID="SystemCenterCentral.Utilities.Certificates.LocalScript.RemoteDesktop.Discovery.DataSource" Accessibility="Internal" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>System!System.Discovery.MapperSchema</SchemaType>
+            <SchemaType>System!System.ExpressionEvaluatorSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="CertStoreID" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="StoreProvider" type="xsd:string" default="System" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="StoreType" type="xsd:string" default="LocalMachine" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="RevocationFlag" type="xsd:string" default="EntireChain" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="RevocationMode" type="xsd:string" default="Online" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="VerificationFlags" type="xsd:string" default="IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="SubjectIncludeRegEx" type="xsd:string" default="^.*$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="IssuerIncludeRegEx" type="xsd:string" default="^.*$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="SubjectExcludeRegEx" type="xsd:string" default="^$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="IssuerExcludeRegEx" type="xsd:string" default="^$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="EnhKeyUseIncludeRegEx" type="xsd:string" default="^$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="\n" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\n" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="IgnoreSupersededCert" type="xsd:boolean" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="ExpiryThresholdDays" type="xsd:integer" default="31" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="DiscoverSupersededCACertificates" type="xsd:boolean" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="SyncTime" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="SpreadInitializationOverInterval" type="xsd:integer" default="900" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="ClassId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="InstanceSettings" type="SettingsType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="Expression" type="ExpressionType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="DiscoverSupersededCACertificates" Selector="$Config/DiscoverSupersededCACertificates$" ParameterType="bool" />
+          <OverrideableParameter ID="ExpiryThresholdDays" Selector="$Config/ExpiryThresholdDays$" ParameterType="int" />
+          <OverrideableParameter ID="SpreadInitializationOverInterval" Selector="$Config/SpreadInitializationOverInterval$" ParameterType="int" />
+          <OverrideableParameter ID="IgnoreSupersededCert" Selector="$Config/IgnoreSupersededCert$" ParameterType="bool" />
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="DiscoveryScheduler" TypeID="System!System.Discovery.Scheduler">
+                <Scheduler>
+                  <SimpleReccuringSchedule>
+                    <Interval Unit="Seconds">$Config/IntervalSeconds$</Interval>
+                    <!--<SpreadInitializationOverInterval>$Config/SpreadInitializationOverInterval$</SpreadInitializationOverInterval>-->
+                  </SimpleReccuringSchedule>
+                  <ExcludeDates />
+                </Scheduler>
+              </DataSource>
+              <ProbeAction ID="ScriptProbe" TypeID="SystemCenterCentral.Utilities.RemoteDesktop.Certificates.ScriptProbe">
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+                <CertStoreID>$Config/CertStoreID$</CertStoreID>
+                <StoreProvider>$Config/StoreProvider$</StoreProvider>
+                <StoreType>$Config/StoreType$</StoreType>
+                <RevocationFlag>$Config/RevocationFlag$</RevocationFlag>
+                <RevocationMode>$Config/RevocationMode$</RevocationMode>
+                <VerificationFlags>$Config/VerificationFlags$</VerificationFlags>
+                <SubjectIncludeRegEx>$Config/SubjectIncludeRegEx$</SubjectIncludeRegEx>
+                <IssuerIncludeRegEx>$Config/IssuerIncludeRegEx$</IssuerIncludeRegEx>
+                <SubjectExcludeRegEx>$Config/SubjectExcludeRegEx$</SubjectExcludeRegEx>
+                <IssuerExcludeRegEx>$Config/IssuerExcludeRegEx$</IssuerExcludeRegEx>
+                <EnhKeyUseIncludeRegEx>$Config/EnhKeyUseIncludeRegEx$</EnhKeyUseIncludeRegEx>
+                <EnhKeyUseExcludeRegEx>$Config/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
+                <TemplateIncludeRegEx>$Config/TemplateIncludeRegEx$</TemplateIncludeRegEx>
+                <TemplateExcludeRegEx>$Config/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+                <IgnoreSupersededCert>$Config/IgnoreSupersededCert$</IgnoreSupersededCert>
+                <ExpiryThresholdDays>$Config/ExpiryThresholdDays$</ExpiryThresholdDays>
+                <Debug>$Config/Debug$</Debug>
+              </ProbeAction>
+              <ConditionDetection ID="CertificateInstance" TypeID="System!System.ExpressionFilter">
+                <Expression>
+                  <And>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <XPathQuery Type="String">Property[@Name='InstanceType']</XPathQuery>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value Type="String">Certificate</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                    <Expression>
+                      <Or>
+                        <!-- filter to disable discovery of superseded CA certificates -->
+                        <Expression>
+                          <And>
+                            <Expression>
+                              <SimpleExpression>
+                                <ValueExpression>
+                                  <Value Type="Boolean">$Config/DiscoverSupersededCACertificates$</Value>
+                                </ValueExpression>
+                                <Operator>Equal</Operator>
+                                <ValueExpression>
+                                  <Value Type="Boolean">false</Value>
+                                </ValueExpression>
+                              </SimpleExpression>
+                            </Expression>
+                            <Expression>
+                              <RegExExpression>
+                                <ValueExpression>
+                                  <XPathQuery Type="String">Property[@Name='CAVersion']</XPathQuery>
+                                </ValueExpression>
+                                <Operator>DoesNotMatchRegularExpression</Operator>
+                                <Pattern>superseded</Pattern>
+                              </RegExExpression>
+                            </Expression>
+                          </And>
+                        </Expression>
+                        <Expression>
+                          <SimpleExpression>
+                            <ValueExpression>
+                              <Value Type="Boolean">$Config/DiscoverSupersededCACertificates$</Value>
+                            </ValueExpression>
+                            <Operator>Equal</Operator>
+                            <ValueExpression>
+                              <Value Type="Boolean">true</Value>
+                            </ValueExpression>
+                          </SimpleExpression>
+                        </Expression>
+                      </Or>
+                    </Expression>
+                  </And>
+                </Expression>
+              </ConditionDetection>
+              <ConditionDetection ID="ClassMapper" TypeID="System!System.Discovery.FilteredClassSnapshotDataMapper">
+                <Expression>$Config/Expression$</Expression>
+                <ClassId>$Config/ClassId$</ClassId>
+                <InstanceSettings>$Config/InstanceSettings$</InstanceSettings>
+              </ConditionDetection>
+            </MemberModules>
+            <Composition>
+              <Node ID="ClassMapper">
+                <Node ID="CertificateInstance">
+                  <Node ID="ScriptProbe">
+                    <Node ID="DiscoveryScheduler" />
+                  </Node>
+                </Node>
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.Discovery.Data</OutputType>
+      </DataSourceModuleType>
+      <DataSourceModuleType ID="SystemCenterCentral.Utilities.Certificates.Custom.CertificateStoreDiscoveryProvider" Accessibility="Public" Batching="false">
+        <Configuration>
+          <xsd:element name="ComputerName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="Frequency" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="CertStoreID" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="StoreProvider" type="xsd:string" default="System" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="StoreType" type="xsd:string" default="LocalMachine" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="ComputerPrincipalName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="CertStoreName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="ChildMonitorSync" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="ChildMonitorInterval" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="ChildDiscoveryInterval" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="ChildScriptTimeout" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="RevocationFlag" type="xsd:string" default="EntireChain" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="RevocationMode" type="xsd:string" default="Online" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="VerificationFlags" type="xsd:string" default="IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="SubjectIncludeRegEx" type="xsd:string" default="^.*$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="IssuerIncludeRegEx" type="xsd:string" default="^.*$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="SubjectExcludeRegEx" type="xsd:string" default="^$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="IssuerExcludeRegEx" type="xsd:string" default="^$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="EnhKeyUseIncludeRegEx" type="xsd:string" default="^$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="\n" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\n" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="IgnoreSupersededCert" type="xsd:boolean" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="DisplayName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Frequency" Selector="$Config/Frequency$" ParameterType="int" />
+          <OverrideableParameter ID="ChildMonitorSync" Selector="$Config/ChildMonitorSync$" ParameterType="string" />
+          <OverrideableParameter ID="ChildMonitorInterval" Selector="$Config/ChildMonitorInterval$" ParameterType="int" />
+          <OverrideableParameter ID="ChildDiscoveryInterval" Selector="$Config/ChildDiscoveryInterval$" ParameterType="int" />
+          <OverrideableParameter ID="ChildScriptTimeout" Selector="$Config/ChildScriptTimeout$" ParameterType="int" />
+          <OverrideableParameter ID="RevocationFlag" Selector="$Config/RevocationFlag$" ParameterType="string" />
+          <OverrideableParameter ID="RevocationMode" Selector="$Config/RevocationMode$" ParameterType="string" />
+          <OverrideableParameter ID="VerificationFlags" Selector="$Config/VerificationFlags$" ParameterType="string" />
+          <OverrideableParameter ID="SubjectIncludeRegEx" Selector="$Config/SubjectIncludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="IssuerIncludeRegEx" Selector="$Config/IssuerIncludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="SubjectExcludeRegEx" Selector="$Config/SubjectExcludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="IssuerExcludeRegEx" Selector="$Config/IssuerExcludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="EnhKeyUseIncludeRegEx" Selector="$Config/EnhKeyUseIncludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="EnhKeyUseExcludeRegEx" Selector="$Config/EnhKeyUseExcludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="TemplateIncludeRegEx" Selector="$Config/TemplateIncludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="TemplateExcludeRegEx" Selector="$Config/TemplateExcludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="IgnoreSupersededCert" Selector="$Config/IgnoreSupersededCert$" ParameterType="bool" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="DS" TypeID="Windows!Microsoft.Windows.Discovery.RegistryProvider">
+                <ComputerName>$Config/ComputerName$</ComputerName>
+                <RegistryAttributeDefinitions>
+                  <RegistryAttributeDefinition>
+                    <AttributeName>Certificates</AttributeName>
+                    <Path>SOFTWARE\Microsoft\SystemCertificates\$Config/CertStoreID$\Certificates</Path>
+                    <PathType>0</PathType>
+                    <AttributeType>0</AttributeType>
+                  </RegistryAttributeDefinition>
+                </RegistryAttributeDefinitions>
+                <Frequency>$Config/Frequency$</Frequency>
+              </DataSource>
+              <ConditionDetection ID="Mapping" TypeID="System!System.Discovery.FilteredClassSnapshotDataMapper">
+                <Expression>
+                  <SimpleExpression>
+                    <ValueExpression>
+                      <XPathQuery Type="String">Values/Certificates</XPathQuery>
+                    </ValueExpression>
+                    <Operator>Equal</Operator>
+                    <ValueExpression>
+                      <Value Type="String">True</Value>
+                    </ValueExpression>
+                  </SimpleExpression>
+                </Expression>
+                <ClassId>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry"]$</ClassId>
+                <InstanceSettings>
+                  <Settings>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</Name>
+                      <Value>$Config/CertStoreID$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Name>
+                      <Value>$Config/ComputerPrincipalName$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreName$</Name>
+                      <Value>$Config/CertStoreName$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</Name>
+                      <Value>$Config/StoreProvider$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</Name>
+                      <Value>$Config/StoreType$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/Sync$</Name>
+                      <Value>$Config/ChildMonitorSync$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildMonitorInterval$</Name>
+                      <Value>$Config/ChildMonitorInterval$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildDiscoveryInterval$</Name>
+                      <Value>$Config/ChildDiscoveryInterval$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildScriptTimeout$</Name>
+                      <Value>$Config/ChildScriptTimeout$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationFlag$</Name>
+                      <Value>$Config/RevocationFlag$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationMode$</Name>
+                      <Value>$Config/RevocationMode$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/VerificationFlags$</Name>
+                      <Value>$Config/VerificationFlags$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectIncludeRegEx$</Name>
+                      <Value>$Config/SubjectIncludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerIncludeRegEx$</Name>
+                      <Value>$Config/IssuerIncludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectExcludeRegEx$</Name>
+                      <Value>$Config/SubjectExcludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerExcludeRegEx$</Name>
+                      <Value>$Config/IssuerExcludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseIncludeRegEx$</Name>
+                      <Value>$Config/EnhKeyUseIncludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseExcludeRegEx$</Name>
+                      <Value>$Config/EnhKeyUseExcludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateIncludeRegEx$</Name>
+                      <Value>$Config/TemplateIncludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateExcludeRegEx$</Name>
+                      <Value>$Config/TemplateExcludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IgnoreSupersededCert$</Name>
+                      <Value>$Config/IgnoreSupersededCert$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="System!System.Entity"]/DisplayName$</Name>
+                      <Value>$Config/DisplayName$</Value>
+                    </Setting>
+                  </Settings>
+                </InstanceSettings>
+              </ConditionDetection>
+            </MemberModules>
+            <Composition>
+              <Node ID="Mapping">
+                <Node ID="DS" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.Discovery.Data</OutputType>
+      </DataSourceModuleType>
+      <ProbeActionModuleType ID="SystemCenterCentral.Utilities.RemoteDesktop.Certificates.ScriptProbe" Accessibility="Internal" RunAs="Utilities!SystemCenterCentral.Utilities.Certificates.HighPrivilege.SecureReference" Batching="false" PassThrough="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="CertStoreID" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="StoreProvider" type="xsd:string" default="System" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="StoreType" type="xsd:string" default="LocalMachine" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="RevocationFlag" type="xsd:string" default="EntireChain" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="RevocationMode" type="xsd:string" default="Online" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="VerificationFlags" type="xsd:string" default="IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="SubjectIncludeRegEx" type="xsd:string" default="^.*$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="IssuerIncludeRegEx" type="xsd:string" default="^.*$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="SubjectExcludeRegEx" type="xsd:string" default="^$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="IssuerExcludeRegEx" type="xsd:string" default="^$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="EnhKeyUseIncludeRegEx" type="xsd:string" default="^$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="\n" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\n" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="IgnoreSupersededCert" type="xsd:boolean" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="0" name="ExpiryThresholdDays" type="xsd:integer" default="31" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IgnoreSupersededCert" Selector="$Config/IgnoreSupersededCert$" ParameterType="bool" />
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="RemoteDesktopCertificateBagProbe" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>SystemCenterCentral.Utilities.Certificates.Certificate_Verify_Script_V630.ps1</ScriptName>
+                <ScriptBody>#
+# Enumerate certificates and CRLs in windows certificate stores
+#		Returns SCOM property bags
+#
+#		P/Invoke on cert32.dll was required as .NET does not currently
+#		feature an object for CRLs nor for advanced certificate stores (e.g. WinNT service based).
+#
+#		System requirements: Powershell &gt;= 2.0 / .NET &gt;= 2.0
+#
+#		Ignores RevocationStatusUnknown and OfflineRevocation (treated as valid)
+#
+#		Parameters
+#			$storename			e.g. My
+#			$storeProvider		SystemRegistry | System | File | LDAP
+#			$storeType			LocalMachine | CurrentUser | Services | Users
+#			$revocationFlag		EntireChain | ExcludeRoot | EndCertificateOnly
+#			$revocationMode		Online | Offline | NoCheck
+#			$verificationFlags  ...
+#			$subjectIncludeRegEx
+#			$issuerIncludeRegEx
+#           		$subjectExcludeRegEx
+#			$issuerExcludeRegEx
+#     			$enhKeyUseIncludeRegEx RegEx to include certificates with a specific enhanced key usage OID
+#			$enhKeyUseExcludeRegEx RegEx to exclude certificates with a specific enhanced key usage OID
+#			$templateIncludeRegEx
+#			$templateExcludeRegEx
+#			$expiryThresholdDays
+#			$debugParam
+#
+# Version 1.0 - 23. December 2013 - initial            - Raphael Burri - raburri@bluewin.ch
+# Version 2.0 - 25. March 2014 	  - Self signed option - Raphael Burri - raburri@bluewin.ch
+# Version 3.0 - 27. March 2014    - exception when calling PrtToStructure(InPtr, Type) on PoSh &gt;= 3.0. KB2909958 describes a
+#								 	workaround. 		- Raphael with a lot of help &amp; coffee by Marc (MoW) and Joel (Jaykul)
+# Version 3.1 - 28. March 2014    - open stores read only
+# Version 3.2 - 11. June 2014     - skip certificates based on Enhanced Key Usage (napHealthyOid etc.)
+# Version 4.0 - 04. July 2014     - filter certs &amp; crl based on subject &amp; issuer inside the script instead
+#                                   of outside.
+# Version 5.0 - 20. Feb 2015     - assure "Subject" can not be an empty string
+#									added CertificateTemplate as a property and ex- &amp; include RegEx
+#									verbose output to deal with issues on the certificate's chain
+#									filter "unknown error" from StatusMessage (PoSh 2.0)
+# Version 5.1 - 07. May 2015	- add $expiryThresholdDays parameter to allow overriding when certificates
+#									should be reported in views and reports
+# Version 5.2 - 30. July 2015	- fix localized detection of template name
+# Version 6.0 - 06. September 2018	- Add-Type modifications / add EKU to property bag / add EKU include filter
+# Version 6.1 - 01. November 2019	- bcornelissen: fix for empty enterprise template name
+# Version 6.2 - 12. Apr 2023      - Add Remote Desktop Certificate store for self-signed certificate vulnerability
+#
+#
+#	CRL bits originally provided by and included with the approval of Vadims Podāns - vpodans@sysadmins.lv
+# 								http://www.sysadmins.lv/CategoryView,category,PowerShell,6.aspx
+#
+
+#region parameters
+#param([string]$storeName = "My",
+param([string]$storeName = "Remote Desktop",
+  [string]$storeProvider = "SystemRegistry",
+  [string]$storeType = "LocalMachine",
+  [string]$revocationFlag = "EntireChain",
+  [string]$revocationMode = "Online",
+  [string]$verificationFlags = "IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown",
+  [string]$subjectIncludeRegEx = "^.*$",
+  [string]$issuerIncludeRegEx = "^.*$",
+  [string]$subjectExcludeRegEx = "^$",
+  [string]$issuerExcludeRegEx = "^$",
+  [string]$enhKeyUseIncludeRegEx = "^(|.+)$",
+  [string]$enhKeyUseExcludeRegEx = "\n",
+  [string]$templateIncludeRegEx = "^(|.+)$",
+  [string]$templateExcludeRegEx = "\n",
+  [int]$expiryThresholdDays = 31,
+  [string]$ignoreSupersededCert = "true",
+  [string]$debugParam = "true")
+#endregion
+
+
+#region just examples and placeholders for debug
+#storeName: fullpath or just name. E.g.: "My" / c:\SOMEHWRE\store.bin / "WinNTServiceName\MY" etc...
+#storeProvider: System (a summary map) / SystemRegistry (really is in registry) / File / LDAP
+#storeType: LocalMachine / CurrentUser / Services / Users
+
+#$storeName = "Remote Desktop"
+#$debugParam = "true"
+#$storeName = "aspnet_state\My"
+#$storeProvider = "System"
+#$storeProvider = "LDAP"
+#endregion
+
+#region variables and constants
+# get script name
+# SCOM agent calls them dynamically, assigning random names
+#$scriptName = $MyInvocation.MyCommand.Name
+$storeProvider = "System"
+$storeName = "Remote Desktop"
+$scriptName = "SystemCenterCentral.Utilities.Certificates.Certificate_Verify_Script_V630.ps1"
+$userName = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+
+#parameter from string (override param from SCOM) to boolean
+if ($debugParam -eq 'true') { $debugScript = $true }
+else { $debugScript = $false }
+if ($ignoreSupersededCert -eq "true") { $ignoreSupersededCert = $true }
+else { $ignoreSupersededCert = $false }
+
+# check if running in native PoSh ConsoleHost
+if ($Host.Name -imatch '^ConsoleHost$') { $psHostConsole = $true }
+else { $psHostConsole = $false }
+
+#constants for crypt32.dll methods
+[int]$CERT_STORE_PROV_MEMORY = 0x02
+[int]$CERT_STORE_PROV_FILE = 0x03
+[int]$CERT_STORE_PROV_REG = 0x04
+[int]$CERT_STORE_PROV_PKCS7 = 0x05
+[int]$CERT_STORE_PROV_SERIALIZED = 0x06
+[int]$CERT_STORE_PROV_FILENAME = 0x08
+[int]$CERT_STORE_PROV_SYSTEM = 0x0A
+[int]$CERT_STORE_PROV_COLLECTION = 0x0B
+[int]$CERT_STORE_PROV_SYSTEM_REGISTRY = 0x0D
+[int]$CERT_STORE_PROV_SMART_CARD = 0x0F
+[int]$CERT_STORE_PROV_LDAP = 0x10
+
+[int]$CERT_STORE_ENUM_ARCHIVED_FLAG = 0x00000200
+[int]$CERT_STORE_OPEN_EXISTING_FLAG = 0x00004000
+[int]$CERT_STORE_READONLY_FLAG = 0x00008000
+
+[int]$CERT_SYSTEM_STORE_CURRENT_USER = 0x00010000
+[int]$CERT_SYSTEM_STORE_LOCAL_MACHINE = 0x00020000
+[int]$CERT_SYSTEM_STORE_SERVICES = 0x00050000
+[int]$CERT_SYSTEM_STORE_USERS = 0x00060000
+
+#see on input parameters - default to LocalSystem store My (personal computer store), SystemRegistry provider (registry) and LocalSystem storetype
+if ($storeName -eq "") { $storeName = "My" }
+# system reflect a map (includes Third-Party, Group, Enterprise etc.)
+if ($storeProvider -eq "System") { $storeProv = $CERT_STORE_PROV_SYSTEM }
+# systemregistry only returns the certificates physically present in the local registry
+elseif ($storeProvider -eq "SystemRegistry") { $storeProv = $CERT_STORE_PROV_SYSTEM_REGISTRY }
+elseif ($storeProvider -eq "File") { $storeProv = $CERT_STORE_PROV_FILE }
+elseif ($storeProvider -eq "LDAP") { $storeProv = $CERT_STORE_PROV_LDAP }
+else { $storeProv = $CERT_STORE_PROV_SYSTEM_REGISTRY }
+if ($storeType -eq "LocalSystem") { $storeTp = $CERT_SYSTEM_STORE_LOCAL_MACHINE }
+elseif ($storeType -eq "CurrentUser") { $storeTp = $CERT_SYSTEM_STORE_CURRENT_USER }
+elseif ($storeType -eq "Services") { $storeTp = $CERT_SYSTEM_STORE_SERVICES }
+elseif ($storeType -eq "Users") { $storeTp = $CERT_SYSTEM_STORE_USERS }
+else { $storeTp = $CERT_SYSTEM_STORE_LOCAL_MACHINE }
+#set open_existing and readonly
+$storeTp = $storeTp + $CERT_STORE_OPEN_EXISTING_FLAG + $CERT_STORE_READONLY_FLAG
+
+
+#PoSh 2.0 was shipped with 2008R2/Win7. In order to have as little dependency on later updates
+#     as possible this script only uses 2.0 cmdlets
+$minimalPSVersion = "2.0"
+$CERTVALID = "IsVerified"
+$CERTTIMEVALID = "IsTimeValid"
+
+#lookup for certificates snap-in friendly names (in english only)
+$storeNameTable = @{"RDP" = "Remote Desktop";
+}
+# Original Array
+#$storeNameTable = @{"AuthRoot" = "Third-Party Root Certification Authorities";
+#  "CA"                         = "Intermediate Certification Authorities";
+#  "Disallowed"                 = "Untrusted Certificates";
+#  "My"                         = "Personal";
+#  "REQUEST"                    = "Certificate Enrollment Requests";
+#  "Root"                       = "Trusted Root Certification Authorities";
+#  "SmartCardRoot"              = "Smart Card Trusted Roots";
+#  "Trust"                      = "Enterprise Trust";
+#  "TrustedDevices"             = "Trusted Devices";
+#  "TrustedPeople"              = "Trusted People";
+#  "TrustedPublisher"           = "Trusted Publisher";
+#  "WebHosting"                 = "Web Hosting"
+#}  
+#initialize hash tables
+$certificateObjects = @()
+$crlObjects = @()
+#endregion
+
+#region C# Signature
+# C# module imports and types where-type variable
+# as CRLs are not implemented in System.Security.Cryptography.X509Certificates
+$x509Signature = @"
+ using System;
+ using System.Runtime.InteropServices;
+ using System.Security;
+ using System.Security.Cryptography;
+ using System.Security.Cryptography.X509Certificates;
+
+ namespace SystemCenterCentral
+ {
+     namespace Utilities
+     {
+         namespace Certificates
+         {
+                 public class X509CRL2
+                 {
+                     public int Version;
+                     public string Type;
+                     public X500DistinguishedName IssuerDN;
+                     public string Issuer;
+                     public DateTime ThisUpdate;
+                     public DateTime NextUpdate;
+                     public Oid SignatureAlgorithm;
+                     public X509ExtensionCollection Extensions;
+                     // no need to know every single entry
+					 // public X509CRLEntry[] RevokedCertificates;
+					 public uint RevokedCertificateCount;
+
+                     //public byte[] RawData;
+                 }
+
+				 //no need for CRL entries at the moment
+                 //public class X509CRLEntry
+                 //{
+                 //    public string SerialNumber;
+                 //    public DateTime RevocationDate;
+                 //    public int ReasonCode;
+                 //    public string ReasonMessage;
+                 //}
+
+                 public class Helper {
+                     [DllImport("crypt32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+                     public static extern int CertCreateCRLContext(
+                         int dwCertEncodingType,
+                         IntPtr pbCrlEncoded,
+                         int cbCrlEncoded
+                     );
+
+                     [DllImport("crypt32.dll", EntryPoint="CertEnumCertificatesInStore", CharSet=CharSet.Auto, SetLastError=true)]
+                     public static extern IntPtr CertEnumCertificatesInStore(
+                                     IntPtr storeProvider,
+                                     IntPtr prevCertContext);
+
+                     [DllImport("crypt32.dll", EntryPoint="CertEnumCRLsInStore", CharSet=CharSet.Auto, SetLastError=true)]
+                     public static extern IntPtr CertEnumCRLsInStore(
+                                    IntPtr storeProvider,
+                                     IntPtr prevCrlContext);
+
+                     [DllImport("crypt32.dll", EntryPoint="CertEnumCTLsInStore", CharSet=CharSet.Auto, SetLastError=true)]
+                     public static extern IntPtr CertEnumCTLsInStore(
+                                    IntPtr storeProvider,
+                                     IntPtr prevCtlContext);
+
+                     [DllImport("crypt32.dll", SetLastError = true)]
+                     public static extern Boolean CertFreeCRLContext(
+                         IntPtr pCrlContext
+                     );
+
+                     [DllImport("crypt32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+                     public static extern int CertNameToStr(
+                         int dwCertEncodingType,
+                         ref CRYPTOAPI_BLOB pName,
+                         int dwStrType,
+                         System.Text.StringBuilder psz,
+                         int csz
+                     );
+
+                     [DllImport("crypt32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+                     public static extern IntPtr CertFindExtension(
+                         [MarshalAs(UnmanagedType.LPStr)]String pszObjId,
+                         int cExtensions,
+                         IntPtr rgExtensions
+                     );
+
+                     [DllImport("crypt32.dll", EntryPoint="CertOpenStore", CharSet=CharSet.Auto, SetLastError=true)]
+                     public static extern IntPtr CertOpenStoreStringPara(
+                                     int storeProvider,
+                                     int encodingType,
+                                     IntPtr hcryptProv,
+                                     int flags,
+                                     String pvPara);
+
+                     [DllImport("crypt32.dll", EntryPoint="CertCloseStore", CharSet=CharSet.Auto, SetLastError=true)]
+                     [return : MarshalAs(UnmanagedType.Bool)]
+                     public static extern bool CertCloseStore(
+                                     IntPtr storeProvider,
+                                     int flags);
+                }
+
+                [StructLayout(LayoutKind.Sequential)]
+                public struct CRL_CONTEXT
+                {
+                     public int dwCertEncodingType;
+                     // TODO: This should be marshalled right, as BYTE[]
+                     // [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)]
+                     public IntPtr pbCrlEncoded;
+                     public uint cbCrlEncoded;
+                     // TODO: You can marshal this as CRL_INFO directly
+                     public IntPtr pCrlInfo;
+                     public IntPtr hCertStore;
+                }
+
+                [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+                public struct CRL_INFO
+                {
+                     public int dwVersion;
+                     public CRYPT_ALGORITHM_IDENTIFIER SignatureAlgorithm;
+                     public CRYPTOAPI_BLOB Issuer;
+                     public Int64 ThisUpdate;
+                     public Int64 NextUpdate;
+                     public int cCRLEntry;
+
+                     // TODO: This should be marshalled right, as CRL_ENTRY[] ??
+                     public IntPtr rgCRLEntry;
+                     public int cExtension;
+                     public IntPtr rgExtension;
+                }
+
+                [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+                public struct CRYPT_ALGORITHM_IDENTIFIER
+                {
+                    [MarshalAs(UnmanagedType.LPStr)]public String pszObjId;
+                    public CRYPTOAPI_BLOB Parameters;
+                }
+
+                [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+                public struct CRYPTOAPI_BLOB
+                {
+                    public int cbData;
+                    public IntPtr pbData;
+                }
+
+                [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+                public struct CRL_ENTRY
+                {
+                    public CRYPTOAPI_BLOB SerialNumber;
+                    public Int64 RevocationDate;
+                    public int cExtension;
+                    public IntPtr rgExtension;
+                }
+
+                [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+                public struct CERT_EXTENSION
+                {
+                    [MarshalAs(UnmanagedType.LPStr)]public String pszObjId;
+                    public Boolean fCritical;
+                    public CRYPTOAPI_BLOB Value;
+                }
+
+             }
+     }
+ }
+"@
+#endregion
+
+# Get access to the scripting API
+$scomAPI = new-object -comObject "MOM.ScriptAPI"
+
+# check if Powershell &gt;= 2.0 is running
+if ( ($PSVersionTable.PSCompatibleVersions) -contains $minimalPSVersion) {
+  Write-Host Powershell installed: ( $PSVersionTable.PSVersion.ToString() )
+  Write-Host      It is compatible with version $minimalPSVersion required by this script
+} else {
+  Write-Host Powershell installed: $PSVersionTable.PSVersion.ToString() `t`t`t`t`t`t`t`t -BackgroundColor red
+  Write-Host `tIt is not compatible with version $minimalPSVersion required by this script `t -BackgroundColor red
+  exit
+}
+
+
+#region check if the flag parameters are valid
+$X509ParamValid = $true
+$X509ParamEx = ""
+try { [System.Security.Cryptography.X509Certificates.X509RevocationFlag]$X509RevocationFlag = $revocationFlag }
+catch {
+  Write-Warning $_
+		$X509ParamValid = $false
+		$X509ParamEx += [string]$_ + "
+"
+		# stick to default
+		[System.Security.Cryptography.X509Certificates.X509RevocationFlag]$X509RevocationFlag = "EntireChain"
+}
+try { [System.Security.Cryptography.X509Certificates.X509RevocationMode]$X509RevocationMode = $revocationMode }
+catch {
+  Write-Warning $_
+		$X509ParamValid = $false
+		$X509ParamEx += [string]$_ + "
+"
+		# stick to default
+		[System.Security.Cryptography.X509Certificates.X509RevocationMode]$X509RevocationMode = "NoCheck"
+}
+try { [System.Security.Cryptography.X509Certificates.X509VerificationFlags]$X509VerificationFlags = $verificationFlags }
+catch {
+  Write-Warning $_
+		$X509ParamValid = $false
+		$X509ParamEx += [string]$_ + "
+"
+		#stick to default
+		[System.Security.Cryptography.X509Certificates.X509VerificationFlags]$X509VerificationFlags = "IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown"
+}
+if ($X509ParamValid) {
+  $scomAPI.LogScriptEvent($scriptName, 110, 4, "Script starting certificate and CRL discovery/verification:
+
+      Parameters:
+      -----------
+    storeName: " + $storeName + "
+    storeProvider: " + $storeProvider + "
+    storeType: " + $storeType + "
+    revocationFlag: " + $revocationFlag + "
+    revocationMode: " + $revocationMode + "
+    verificationFlags: " + $verificationFlags + "
+    expiryThresholdDays: " + $expiryThresholdDays + "
+    ignoreSupersededCert: " + $ignoreSupersededCert + "
+    debugParam: " + $debugParam + "
+
+      PowerShell Host / Version / PID:
+      --------------------------------
+  " + $host.name + " / " + $PSVersionTable.PSVersion + " / " + $PID)
+} else {
+  $scomAPI.LogScriptEvent($scriptName, 111, 2, "Script starting with default certificate verification flags as the overridden parameters were invalid:
+
+      Parameters:
+      -----------
+    storeName: " + $storeName + "
+    storeProvider: " + $storeProvider + "
+    storeType: " + $storeType + "
+    revocationFlag: " + $revocationFlag + "
+    revocationMode: " + $revocationMode + "
+    verificationFlags: " + $verificationFlags + "
+    expiryThresholdDays: " + $expiryThresholdDays + "
+    ignoreSupersededCert: " + $ignoreSupersededCert + "
+    debugParam: " + $debugParam + "
+
+      PowerShell Host / Version / PID:
+      --------------------------------
+    " + $host.name + " / " + $PSVersionTable.PSVersion + " / " + $PID + "
+
+      Exception Detail:
+      ----------------
+  " + $X509ParamEx)
+}
+#endregion
+
+function main {
+  # loading crypt32.dll type to [SystemCenterCentral.Utilities.Certificates.Helper]
+  # NOTE: no exception occurs if type was already loaded. Runtime will then just use the previous one
+  try
+  { Add-Type -TypeDefinition $x509Signature }
+  catch {
+    #throw "Unable to load [SystemCenterCentral.Utilities.Certificates.X509CRL] and [SystemCenterCentral.Utilities.Certificates.Helper] namespace with crypt32.dll methods"
+    $scomAPI.LogScriptEvent($scriptName, 119, 2, "Unable to load [SystemCenterCentral.Utilities.Certificates.X509CRL] and [SystemCenterCentral.Utilities.Certificates.Helper] namespace with crypt32.dll methods. Retrying on the next script run.")
+    #exit
+		}
+
+  #ready to rumble
+
+  #get certificate store
+  $certStorePt = [SystemCenterCentral.Utilities.Certificates.Helper]::CertOpenStoreStringPara($storeProv, 0, 0, $storeTp, $storeName)
+  if ($certStorePt -ne 0) {
+    # first see about certificates
+    #take it from store pointer to full .NET as certificates are exposed there and easier to handle.
+    #    this works perfectly for File, LDAP or WinNT service stores.
+    $certStore = [System.Security.Cryptography.X509Certificates.X509Store]$certStorePt
+    $certificateObjects += @(Get-CertificateProperties -store $certStore -revocationFlag $revocationFlag -revocationMode $revocationMode -verificationFlags $verificationFlags -subjectInclude $subjectIncludeRegEx -issuerInclude $issuerIncludeRegEx -subjectExclude $subjectExcludeRegEx -issuerExclude $issuerExcludeRegEx -enhKeyUseInclude $enhKeyUseIncludeRegEx -enhKeyUseExclude $enhKeyUseExcludeRegEx -templateInclude $templateIncludeRegEx -templateExclude $templateExcludeRegEx -ignoreSuperseded $ignoreSupersededCert)
+    if ($certificateObjects.Count -gt 0) { Write-CertificatePropertyBags -certificateObjects $certificateObjects }
+
+    # now proceed with CRLs - this requires crypt32.dll P/Invoke
+    $crlPt = [SystemCenterCentral.Utilities.Certificates.Helper]::CertEnumCRLsInStore($certStorePt, 0)
+    While ($crlPt -ne 0) {
+      $crlObjects += @(Get-X509CRL2 -context $crlPt)
+      $crlPt = [SystemCenterCentral.Utilities.Certificates.Helper]::CertEnumCRLsInStore($certStorePt, $crlPt)
+    }
+    if ($crlObjects.Count -gt 0) { Write-CRLPropertyBags -crlObjects $crlObjects -issuerInclude $issuerIncludeRegEx -issuerExclude $issuerExcludeRegEx }
+    # close store
+    $closeStore = [SystemCenterCentral.Utilities.Certificates.Helper]::CertCloseStore($certStorePt, 0)
+		} else {
+    $scomAPI.LogScriptEvent($scriptName, 113, 2, ("Failed to open certificate store.`n`nstoreName: {0}`nstoreProvider: {1}`nstoreType: {2}" -f $storeName, $storeProvider, $storeType))
+		}
+
+  #return an empty bag if no objects were found
+  if (($certificateObjects.Count -lt 1) -and ($script:crlObjectsReturned -lt 1)) {
+    $objVoidBag = $scomAPI.CreatePropertyBag()
+    #when running outside native SCOM host, use AddItem as in legacy days to have console output
+    if ($psHostConsole -eq $true) { $scomAPI.AddItem($objVoidBag) }
+    else { $objVoidBag }
+		}
+  #when running from command line forcing the return (legacy)
+  if ($psHostConsole -eq $true) { $scomAPI.ReturnItems() }
+
+
+  #write summary event
+  $scomAPI.LogScriptEvent($scriptName, 112, 4, ("Script enumerated certificates and CLRs from store '{0}\{1}\{2}'`n`nN° of certs: {3} of {4}`nN° of CRLs: {5} of {6}`n`nThe property bags of this script are being consumed by discovery as well as monitoring workflows.`n`nFilters applied:`nsubject match {7} and notmatch {8}`nissuer match {9} and notmatch {10}`ntemplate match {11} and notmatch {12}`nenhanced key usage OIDs match {13}`nenhanced key usage OIDs notmatch {14}`nUser Context: {15}" -f $storeType, $storeProvider, $storeName, [int]($certificateObjects.Count), [int]($certStore.Certificates.Count), [int]($script:crlObjectsReturned), [int]($crlObjects.Count), [string]$subjectIncludeRegEx, [string]$subjectExcludeRegEx, [string]$issuerIncludeRegEx, [string]$issuerExcludeRegEx, [string]$templateIncludeRegEx, [string]$templateExcludeRegEx, [string]$enhKeyUseIncludeRegEx, [string]$enhKeyUseExcludeRegEx, [string]$userName))
+}
+
+
+function Validate-X509Certificate2
+{ # using pure .NET for certificate validation
+  param($X509Certificate2, $X509RevocationFlag, $X509RevocationMode, $X509VerificationFlags)
+
+  $X509Chain = New-Object System.Security.Cryptography.X509Certificates.X509Chain
+
+  #	EndCertificateOnly: Only the end certificate is checked for revocation.
+ 	#	EntireChain:		The entire chain of certificates is checked for revocation.
+ 	#	ExcludeRoot:		The entire chain, except the root certificate, is checked for revocation.
+  $X509Chain.ChainPolicy.RevocationFlag = $X509RevocationFlag
+
+  #	NoCheck:	No revocation check is performed on the certificate.
+ 	#	Offline:	A revocation check is made using a cached certificate revocation list (CRL).
+ 	#	Online: 	A revocation check is made using an online certificate revocation list (CRL).
+  $X509Chain.ChainPolicy.RevocationMode = $X509RevocationMode
+
+  #	AllFlags:										All flags pertaining to verification are included.
+ 	#	AllowUnknownCertificateAuthority:				Ignore that the chain cannot be verified due to an unknown certificate authority (CA).
+ 	#	IgnoreCertificateAuthorityRevocationUnknown:	Ignore that the certificate authority revocation is unknown when determining certificate verification.
+ 	#	IgnoreCtlNotTimeValid:							Ignore that the certificate trust list (CTL) is not valid, for reasons such as the CTL has expired, when determining certificate verification.
+ 	#	IgnoreCtlSignerRevocationUnknown:				Ignore that the certificate trust list (CTL) signer revocation is unknown when determining certificate verification.
+ 	#	IgnoreEndRevocationUnknown:						Ignore that the end certificate (the user certificate) revocation is unknown when determining certificate verification.
+ 	#	IgnoreInvalidBasicConstraints:					Ignore that the basic constraints are not valid when determining certificate verification.
+ 	#	IgnoreInvalidName:								Ignore that the certificate has an invalid name when determining certificate verification.
+ 	#	IgnoreInvalidPolicy:							Ignore that the certificate has invalid policy when determining certificate verification.
+ 	#	IgnoreNotTimeNested:							Ignore that the CA (certificate authority) certificate and the issued certificate have validity periods that are not nested when verifying the certificate. For example, the CA cert can be valid from January 1 to December 1 and the issued certificate from January 2 to December 2, which would mean the validity periods are not nested.
+ 	#	IgnoreNotTimeValid:								Ignore certificates in the chain that are not valid either because they have expired or they are not yet in effect when determining certificate validity.
+ 	#	IgnoreRootRevocationUnknown:					Ignore that the root revocation is unknown when determining certificate verification.
+ 	#	IgnoreWrongUsage:								Ignore that the certificate was not issued for the current use when determining certificate verification.
+ 	#	NoFlag:											No flags pertaining to verification are included.
+  $X509Chain.ChainPolicy.VerificationFlags = $X509VerificationFlags
+
+  #explicitly forcing verificationtime to NOW
+  $X509Chain.ChainPolicy.VerificationTime = (Get-Date).ToUniversalTime()
+
+
+  #Builds an X.509 chain using the policy specified
+  #   true if the X.509 certificate is valid; otherwise, false
+
+  if ($X509Chain.Build($X509Certificate2)) {
+    $valid = $true
+    $statusSummary = $null
+    $statusSummaryCert = $null
+    $statusSummaryChain = $null
+		} else {
+    $valid = $false
+    $statusSummaryChain = @()
+    $statusSummary = $X509Chain.ChainStatus | % {
+      if ($_.StatusInformation.ToString().Trim() -imatch '^unknown error\.') { ($_.Status.ToString().Trim() + ":" + "`n") }
+      else { ($_.Status.ToString().Trim() + ": " + $_.StatusInformation.ToString().Trim() + "`n") }
+    }
+    if ($X509Chain.ChainElements.Count -gt 1) {
+      #build verbose string with the chain level status
+      $chainLevel = ($X509Chain.ChainElements.Count - 1)
+      $X509Chain.ChainElements | % {
+        #certificate's status
+        if ($_.Certificate.Thumbprint -eq $X509Certificate2.Thumbprint) {
+          if ($_.ChainElementStatus)	{
+            $statusSummaryCert = $_.ChainElementStatus | % {
+              if ($_.StatusInformation.ToString().Trim() -imatch '^unknown error\.') { ($_.Status.ToString().Trim() + ":" + "`n") }
+              else { ($_.Status.ToString().Trim() + ": " + $_.StatusInformation.ToString().Trim() + "`n") }
+            }
+          } else {
+            $statusSummaryCert = $CERTVALID
+          }
+        }
+        #chain element status
+        else {
+          $statusSummaryChainObj = New-Object psobject
+          $statusSummaryChainObj | Add-Member -MemberType NoteProperty -Name chainLevel -Value $chainLevel
+          $statusSummaryChainObj | Add-Member -MemberType NoteProperty -Name chainSubject -Value $_.Certificate.Subject
+          if ($_.ChainElementStatus)	{
+            $statusSummaryChainCert = $_.ChainElementStatus | % {
+              if ($_.StatusInformation.ToString().Trim() -imatch '^unknown error\.') { ($_.Status.ToString().Trim() + ":" + "`n") }
+              else { ($_.Status.ToString().Trim() + ": " + $_.StatusInformation.ToString().Trim() + "`n") }
+            }
+          } else {
+            $statusSummaryChainCert = $CERTVALID
+          }
+          $statusSummaryChainObj | Add-Member -MemberType NoteProperty -Name chainSummary -Value $statusSummaryChainCert
+
+          $statusSummaryChain += $statusSummaryChainObj
+
+        }
+        $chainLevel--
+      }
+    } else {
+      $statusSummaryCert = $statusSummary
+      $statusSummaryChain = $null
+    }
+		}
+  return $valid, $statusSummary, $statusSummaryCert, $statusSummaryChain
+}
+
+function Get-CertificateProperties
+{ # call validate and aggregate certificate information with CA version, template name
+  param ($store,
+    $revocationFlag = "EntireChain",
+    $revocationMode = "Online",
+    $verificationFlags = "NoFlag",
+    $subjectInclude = "^.*$",
+    $issuerInclude = "^.*$",
+    $subjectExclude = "^$",
+    $issuerExclude = "^$",
+    $enhKeyUseInclude = "^(|.+)$",
+    $enhKeyUseExclude = "^$",
+    $templateInclude = "^(|.+)$",
+    $templateExclude = "\n",
+    $ignoreSuperseded = $true)
+
+  #$certificateList = $null
+  $certificateList = @()
+
+  #get and validate all certificates found in the store - except archived ones,
+  # certs that match the subject and issuer filters
+  # and certificates to be excluded via Enhanced Key Usage (2.5.29.37)
+  $store.Certificates | where { $_.Archived -eq $false } | % { `
+      $certExluded = $false
+    #for certificates with an empty subject. Use 1st SAN line.
+    if ($_.Subject.length -eq 0) {
+      if ($_.Extensions | where { $_.OID.Value -eq "2.5.29.17" }) {
+        $_.Extensions | where { $_.OID.Value -eq "2.5.29.17" } | % {
+          $subjectChecked = (($_.Format($true)).Split("`n")[0]).Trim()
+        }
+      } else { $subjectChecked = "" }
+    } else { $subjectChecked = $_.Subject }
+
+    #filter on subject and issuer
+    if (($subjectChecked -inotmatch $subjectInclude) -or ($subjectChecked -imatch $subjectExclude))	{ $certExluded = $true }
+    if (($_.Issuer -inotmatch $issuerInclude) -or ($_.Issuer -imatch $issuerExclude)) {	$certExluded = $true }
+    #filter on enhanced key usage
+    if ($_.Extensions | where { $_.OID.Value -eq "2.5.29.37" }) {
+      $_.Extensions | where { $_.OID.Value -eq "2.5.29.37" } | % {
+        if ($_.EnhancedKeyUsages.Value -join ", " | where { (($_ -notmatch $enhKeyUseInclude) -or ($_ -match $enhKeyUseExclude)) })	{
+          $certExluded = $true
+        }
+      }
+    }
+    #get certificate template name (if avaliable)
+    $templateName = ""
+    if ($_.Extensions | where { $_.OID.Value -match "^1\.3\.6\.1\.4\.1\.311\.2(0\.2|1\.7)$" }) {
+
+      #TemplateName (Version 1)
+      $_.Extensions | where { $_.OID.Value -match "^1\.3\.6\.1\.4\.1\.311\.20\.2$" } | % {
+        $templateName = $_.Format($false).trim()
+      }
+      #Template (Version 2)
+      $_.Extensions | where { $_.OID.Value -match "^1\.3\.6\.1\.4\.1\.311\.21\.7$" } | % {
+        #sometimes no actual name but only the OID is contained - if cert is found outside of issuing forest
+        # W2K3 systems may have localized output: matching on word characters instead
+        #($_.Format($false)) -match 'Template=((?&lt;templateName&gt;.+)\((?&lt;templateOID&gt;1\.3\.6\.1\.4\.1\.311\.[0-9.]+)\)|(?&lt;templateOID&gt;1\.3\.6\.1\.4\.1\.311\.[0-9.]+))' | Out-Null
+        ($_.Format($false)) -match '\b\w+\s*=\s*((?&lt;templateName&gt;.+)\((?&lt;templateOID&gt;1\.3\.6\.1\.4\.1\.311\.[0-9.]+)\)|(?&lt;templateOID&gt;1\.3\.6\.1\.4\.1\.311\.[0-9.]+))' | Out-Null
+        if ($matches.templateName) { $templateName = ($matches.templateName.trim() + "(" + $matches.templateOID.trim() + ")") }
+        else { $templateName = $matches.templateOID.trim() }
+      }
+    }
+    #filter on template name (might be OID)
+    if (($templateName -inotmatch $templateInclude) -or ($templateName -imatch $templateExclude))	{ $certExluded = $true }
+
+    #get SANs as a list
+    $SANs = ""
+    $SANList = @()
+    if ($_.Extensions | where { $_.OID.Value -eq "2.5.29.17" }) {
+      $_.Extensions | where { $_.OID.Value -eq "2.5.29.17" } | % {
+        $SANList += (($_.Format($true).Trim() -split "\n"))
+      }
+    }
+    $SANs = ($SANList | Sort-Object ) -join ", "
+
+    #get certificate Enhanced Key Usage List (if avaliable)
+    $EKU = "&lt;null&gt;: all purpose certificate"
+    $EKUList = @()
+    if ($_.EnhancedKeyUsageList.Count -gt 0) {
+      $_.EnhancedKeyUsageList | Sort-Object ObjectId | ForEach-Object {
+        if ($_.FriendlyName) {
+          $EKUList += """{0}: {1}""" -f $_.FriendlyName, $_.ObjectId
+        } else {
+          $EKUList += $_.ObjectId
+        }
+      }
+      $EKU = $EKUList -join ", "
+    }
+
+    if ($certExluded -eq $false) {
+      # get service properties from various sources
+      $caVersionByte = 0
+      $certificateObj = New-Object psobject
+      $certificateObj | Add-Member -MemberType NoteProperty -Name certSubjectChk -Value $subjectChecked
+      $certificateObj | Add-Member -MemberType NoteProperty -Name cert -Value $_
+
+      # checking "EntireChain", "Online" and not using any tolerate flags "NoFlag"
+      #   that's as picky as one can get
+      $validCert = Validate-X509Certificate2 -X509Certificate2 $_ -X509RevocationFlag $X509RevocationFlag -X509RevocationMode $X509RevocationMode -X509VerificationFlags $X509VerificationFlags
+
+      $certificateObj | Add-Member -MemberType NoteProperty -Name certValid -Value $validCert[0]
+      $certificateObj | Add-Member -MemberType NoteProperty -Name certValidationString -Value $validCert[1]
+      $certificateObj | Add-Member -MemberType NoteProperty -Name certValidationCertificateString -Value $validCert[2]
+      #convert chain validation object into a string
+      $certificateObj | Add-Member -MemberType NoteProperty -Name certValidationChainString -Value $validCert[3]
+
+      # check if the szOID_CERTSRV_CA_VERSION - 1.3.6.1.4.1.311.21.1 extension is used
+      #   and learn the CA version
+      #   CA certificates will return either version number (e.g. 2.0) or "n/a" if
+      #         no version number extension was found
+      #   normal certs will have an empty string ""
+      if ($_.Extensions | where { $_.OID.Value -eq "2.5.29.19" }) {
+        if ($_.Extensions | where { $_.OID.Value -eq "1.3.6.1.4.1.311.21.1" }) {
+          # ASN.1 decoded format of CAVersion will return V1.0 or similar
+          $caVersion = [double]((($_.Extensions | where { $_.OID.Value -eq "1.3.6.1.4.1.311.21.1" }).Format($false)).Replace('V', ''))
+        } else { $caVersion = "n/a" }
+      } else { $caVersion = "" }
+
+      $certificateObj | Add-Member -MemberType NoteProperty -Name certCAVersion -Value $caVersion
+
+      $certificateObj | Add-Member -MemberType NoteProperty -Name certTemplate -Value $templateName
+      $certificateObj | Add-Member -MemberType NoteProperty -Name certEKU -Value $EKU
+      $certificateObj | Add-Member -MemberType NoteProperty -Name certSAN -Value $SANs
+      $certificateList += @($certificateObj)
+    }
+  }
+  #filter certificateList to only the latest (valid the longest) certificate of one breed
+  #    subject, SANs, issuers, EKUs and template are considered grouping properties
+  if ($ignoreSuperseded -eq $true) {
+    $certificateList = @(
+      $certificateList | Group-Object certSubjectChk, certSAN, cert.IssuerName.Name, certEKU, certTemplate | ForEach-Object {
+        $_.Group | Sort-Object { [System.DateTime]$_.cert.NotAfter } -Descending | Select-Object -First 1 }
+    )
+  }
+  return $certificateList
+}
+
+function Write-CertificatePropertyBags {
+  param ($certificateObjects)
+
+  #evaluate the highest CAVersion number
+  $versionedCACertHigh = @{ }
+  $certificateObjects | where { ($_.GetType().FullName -eq 'System.Management.Automation.PSCustomObject') -and ($_.certCAVersion -ne 'n/a') -and ($_.certCAVersion -ge 0) } | % `
+  {
+    #add instance issues to hash
+    if (!$versionedCACertHigh.ContainsKey($_.cert.Issuer)) {
+      $versionedCACertHigh.Add($_.cert.Issuer, $_.certCAVersion)
+    } else {
+      if ([double]($versionedCACertHigh.get_Item($_.cert.Issuer)) -lt [double]$_.certCAVersion) {
+        $versionedCACertHigh.set_Item($_.cert.Issuer, $_.certCAVersion)
+      }
+    }
+  }
+
+  #build SCOM propertybag
+  $certificateObjects | where { ($_.GetType().FullName -eq 'System.Management.Automation.PSCustomObject') } | % { `
+
+    $certStatusString = ''
+    $certStatusIgnoreUntrustedRootString = ''
+    $certVerboseStatusString = ''
+    $certTimeStatusString = ''
+    $certVerboseTimeStatusString = ''
+    #build a SCOM property bag
+    $objCertBag = $scomAPI.CreatePropertyBag()
+
+    $objCertBag.AddValue("InstanceType", "Certificate")
+    $objCertBag.AddValue("UserContext", [string]$userName)
+    $objCertBag.AddValue("CertVersion", [string]$_.cert.Version)
+    $objCertBag.AddValue("CertSerial", [string]$_.cert.SerialNumber)
+    $objCertBag.AddValue("CertSignatureAlgo", [string]$_.cert.SignatureAlgorithm.FriendlyName)
+    $objCertBag.AddValue("CertIssuedBy", [string]$_.cert.IssuerName.Name)
+    $objCertBag.AddValue("CertValidFrom", [string]$_.cert.NotBefore.ToUniversalTime())
+    $objCertBag.AddValue("CertValidTo", [string]$_.cert.NotAfter.ToUniversalTime())
+    #if subject is empty this will contain the 1st SAN
+    $objCertBag.AddValue("CertIssuedTo", [string]$_.certSubjectChk)
+    $objCertBag.AddValue("CertPublicKey", [string]$_.cert.PublicKey.Key.KeyExchangeAlgorithm)
+    $objCertBag.AddValue("CertFriendlyName", [string]$_.cert.FriendlyName)
+    $objCertBag.AddValue("CertThumbprint", [string]$_.cert.Thumbprint)
+    $objCertBag.AddValue("CertSAN", [string]$_.certSAN)
+
+    #see if in extensions "CertificateAuthority" is set
+    if ($_.cert.Extensions | where { (($_.OID.Value -eq "2.5.29.19") -and ($_.CertificateAuthority -eq $true)) }) {
+      $objCertBag.AddValue("CertIsCertificateAuthority", "True")
+      $isCACert = $true
+    } Else {
+      $objCertBag.AddValue("CertIsCertificateAuthority", "False")
+      $isCACert = $false
+    }
+    #check if self-signed (SubjectName and IssuerName match)
+    if ($_.cert.IssuerName.Name -eq $_.cert.SubjectName.Name) { $objCertBag.AddValue("CertIsSelfSigned", "True") }
+    else { $objCertBag.AddValue("CertIsSelfSigned", "False") }
+
+
+    $objCertBag.AddValue("CertPrivateKey", [string]$_.cert.HasPrivateKey)
+
+    $objCertBag.AddValue("CertDaysStillValid", [long]($_.cert.NotAfter.ToUniversalTime() - (Get-Date).ToUniversalTime()).Days)
+
+    #descriptive string used in expiry alert descriptions
+    if (((($_.cert.NotAfter.ToUniversalTime() - (Get-Date).ToUniversalTime()).TotalDays) -ge 0) -and ((($_.cert.NotBefore.ToUniversalTime() - (Get-Date).ToUniversalTime()).TotalDays) -lt 0)) { $lifetimeMessage = " expires in " + [string]($_.cert.NotAfter.ToUniversalTime() - (Get-Date).ToUniversalTime()).Days + " days on " + [string]$_.cert.NotAfter.ToUniversalTime() + " UTC" }
+    if ((($_.cert.NotAfter.ToUniversalTime() - (Get-Date).ToUniversalTime()).TotalDays) -lt 0) { $lifetimeMessage = " has expired on " + [string]$_.cert.NotAfter.ToUniversalTime() + " UTC" }
+    if ((($_.cert.NotBefore.ToUniversalTime() - (Get-Date).ToUniversalTime()).TotalDays) -ge 0) { $lifetimeMessage = " is not valid until on or after " + [string]$_.cert.NotBefore.ToUniversalTime() + " UTC" }
+    # CtlNotTimeValid and NotTimeNested on certificate
+    if ($_.certValidationCertificateString -match "CtlNotTimeValid:") { $lifetimeMessage = "'s chain is not in a valid time range. Check if intermediate or root certificates have to be renewed" }
+    if ($_.certValidationCertificateString -match "NotTimeNested:") { $lifetimeMessage = " and the CA (certificate authority) certificate have validity periods that are not nested. For example, the CA cert can be valid from January 1 to December 1 and the issued certificate from January 2 to December 2, which would mean the validity periods are not nested" }
+    #check a rare case when not the certificate but the chain's lifetime has expired or it isn't nested
+    # using new "certValidationChainString" in V5
+    if ($_.certValidationChainString ) {
+      $_.certValidationChainString | % {
+        if ($_.chainSummary -imatch "(NotTimeValid|CtlNotTimeValid):") {
+          $lifetimeMessage = "'s chain is not in a valid time range. Check if intermediate or root certificates have to be renewed"
+          if ($_.chainSummary -match "NotTimeNested:") { $lifetimeMessage = "'s chain certificates have validity periods that are not nested. For example, the intermediate CA cert can be valid from January 1 to December 1 and the root CA cert from January 2 to December 2, which would mean the validity periods are not nested" }
+        }
+      }
+    }
+    $objCertBag.AddValue("CertLifeTimeMessage", $lifetimeMessage)
+
+    #static flag set to true if the certificate expires in less than a month.
+    #   changed to dynamic value via parameter
+    #if (([long](($_.cert.NotAfter.ToUniversalTime() - (Get-Date).ToUniversalTime()).Days) -le 31) -and ([long](($_.cert.NotAfter.ToUniversalTime() - (Get-Date).ToUniversalTime()).Days) -ge 0)) {$objCertBag.AddValue("CertExpiresWithin31Days", "true")}
+    if (([long](($_.cert.NotAfter.ToUniversalTime() - (Get-Date).ToUniversalTime()).Days) -le $expiryThresholdDays) -and ([long](($_.cert.NotAfter.ToUniversalTime() - (Get-Date).ToUniversalTime()).Days) -ge 0)) {
+      $objCertBag.AddValue("CertExpiresSoon", "true")
+      $certExpiresSoon = "true"
+    } else {
+      $objCertBag.AddValue("CertExpiresSoon", "false")
+      $certExpiresSoon = "false"
+    }
+
+    #descriptive string informing why the validation failed
+    #   filter 'NotTimeValid:' as this is being taken care of by the time properties
+    #despite setting the revocation flags, chain build still seems to return "RevocationStatusUnknown" and "OfflineRevocation"
+    #   treat these as valid
+    #filtering status 'UntrustedRoot' as an option for self-signed certificates in personal stores
+    #     caveat: it would still show as an error in certmgr GUI...
+    $validationStatusMatch = '^(NotTimeValid:|CtlNotTimeValid:|NotTimeNested:|RevocationStatusUnknown:|OfflineRevocation:)'
+    $validationStatusMatchIgnoreUntrustedRoot = '^(NotTimeValid:|CtlNotTimeValid:|NotTimeNested:|RevocationStatusUnknown:|OfflineRevocation:|UntrustedRoot:)'
+    $validationTimeStatusMatch = '^(NotTimeValid:|CtlNotTimeValid:|NotTimeNested:)'
+    if ($_.certValidationString -ne $null) {
+      $certStatusString = [string]($_.certValidationString | where { $_ -notmatch $validationStatusMatch } | % { (($_).trim() + " ### ") })
+      $certStatusIgnoreUntrustedRootString = [string]($_.certValidationString | where { $_ -notmatch $validationStatusMatchIgnoreUntrustedRoot } | % { (($_).trim() + " ### ") })
+      $certTimeStatusString = [string]($_.certValidationString | where { $_ -match $validationTimeStatusMatch } | % { (($_).trim() + " ### ") })
+    }
+
+    #more verbose output taking into account the chain's status
+    if ($_.certValidationString -ne $null) {
+      #check summary for time issue
+      $certVerboseStatusString = [string]($_.certValidationString | where { $_ -notmatch $validationStatusMatch } | % { (($_).trim()) })
+      if ($certVerboseStatusString.length -gt 0) {
+        #get certificate issue
+        $certVerboseStatusString = [string]($_.certValidationCertificateString | where { $_ -notmatch $validationStatusMatch } | % { (($_).trim() + "`n") })
+        if ($certVerboseStatusString.length -le 0) { $certVerboseStatusString = $CERTVALID + "`n" }
+        $certVerboseStatusString = "--- Certificate Status ---`n" + $certVerboseStatusString
+        if ($_.certValidationChainString -ne $null ) {
+          $certVerboseStatusString = $certVerboseStatusString + "`n--- Chain Status Overview ---`n"
+          $_.certValidationChainString | % {
+            $certVerboseStatusStringChain = ($_.chainSummary | where { $_ -notmatch $validationStatusMatch })
+            if ($certVerboseStatusStringChain.length -le 0) { $certVerboseStatusStringChain = $CERTVALID + "`n" }
+            $certVerboseStatusString = $certVerboseStatusString + ("Level " + $_.ChainLevel + ": " + $_.ChainSubject + "`n" + $certVerboseStatusStringChain + "`n") }
+        }
+      }
+
+
+
+      #check summary for time issue
+      $certVerboseTimeStatusString = [string]($_.certValidationString | where { $_ -match $validationTimeStatusMatch } | % { (($_).trim()) })
+      if ($certVerboseTimeStatusString.length -gt 0) {
+        #get certificate issue from
+        $certVerboseTimeStatusString = [string]($_.certValidationCertificateString | where { $_ -match $validationTimeStatusMatch } | % { (($_).trim() + "`n") })
+        if ($certVerboseTimeStatusString.length -le 0) { $certVerboseTimeStatusString = $CERTVALID + "`n" }
+        $certVerboseTimeStatusString = "--- Certificate Status ---`n" + $certVerboseTimeStatusString
+        if ($_.certValidationChainString -ne $null ) {
+          $certVerboseTimeStatusString = $certVerboseTimeStatusString + "`n--- Chain Status Overview ---`n"
+          $_.certValidationChainString | % {
+            $certVerboseTimeStatusStringChain = ($_.chainSummary | where { $_ -match $validationTimeStatusMatch })
+            if ($certVerboseTimeStatusStringChain.length -le 0) { $certVerboseTimeStatusStringChain = $CERTVALID + "`n" }
+            $certVerboseTimeStatusString = $certVerboseTimeStatusString + ("Level " + $_.ChainLevel + ":" + $_.ChainSubject + "`n" + $certVerboseTimeStatusStringChain + "`n")
+          }
+        }
+      }
+    }
+
+    #set valid strings respectively clean ending separator
+    if (($certStatusString -eq $null) -or ($certStatusString -eq '')) { $certStatusString = $CERTVALID }
+    else { $certStatusString = ($certStatusString.Substring(0, $certStatusString.length - 5)).trim() }
+    if (($certStatusIgnoreUntrustedRootString -eq $null) -or ($certStatusIgnoreUntrustedRootString -eq '')) { $certStatusIgnoreUntrustedRootString = $CERTVALID }
+    else { $certStatusIgnoreUntrustedRootString = ($certStatusIgnoreUntrustedRootString.Substring(0, $certStatusIgnoreUntrustedRootString.length - 5)).trim() }
+    if (($certTimeStatusString -eq $null) -or ($certTimeStatusString -eq '')) { $certTimeStatusString = $CERTTIMEVALID }
+    else { $certTimeStatusString = ($certTimeStatusString.Substring(0, $certTimeStatusString.length - 5)).trim() }
+
+    $objCertBag.AddValue("CertStatus", $certStatusString)
+    $objCertBag.AddValue("CertStatusIgnoreUntrustedRoot", $certStatusIgnoreUntrustedRootString)
+    $objCertBag.AddValue("CertTimeStatus", $certTimeStatusString)
+    $objCertBag.AddValue("CertVerboseStatus", $certVerboseStatusString)
+    $objCertBag.AddValue("CertVerboseTimeStatus", $certVerboseTimeStatusString)
+
+    #  szOID_CERTSRV_CA_VERSION - 1.3.6.1.4.1.311.21.1
+    #     flag all but the most recent CA certificate as replaced
+    if (($_.certCAVersion -ne 'n/a') -and ($_.certCAVersion -ge 0)) {
+      #if superseded then flag
+      if ($_.certCAVersion -ne ($versionedCACertHigh.get_Item($_.cert.Issuer))) {
+        # set version string so that discovery can filter
+        $certCAVersionString = ([string]$_.certCAVersion + " (superseded)")
+      } else { $certCAVersionString = ([string]$_.certCAVersion + " (current)") }
+    } else { $certCAVersionString = ([string]$_.certCAVersion) }
+    $objCertBag.AddValue("CAVersion", $certCAVersionString)
+
+    # rely on $Data[Default='n/a']/Property[@Name='TemplateName']$ during discovery mapper to set a valid default
+    if (([string]$_.certTemplate).length -gt 0) {
+      $objCertBag.AddValue("TemplateName", [string]$_.certTemplate)
+    }
+
+    $objCertBag.AddValue("EnhancedKeyUsageList", $_.certEKU)
+
+    if ($debugScript) {
+      $certOutput = "
+        CERTIFICATE
+        -----------
+      CertIssuedTo: " + [string]$_.certSubjectChk + "
+      CertIssuedBy: " + [string]$_.cert.IssuerName.Name + "
+      SANs: " + [string]$_.certSAN + "
+      TemplateName: " + [string]$_.certTemplate + "
+      EKUs: " + [string]$_.certEKU + "
+
+      CertValidFrom (UTC): " + [string]$_.cert.NotBefore.ToUniversalTime() + "
+      CertValidTo (UTC): " + [string]$_.cert.NotAfter.ToUniversalTime() + "
+
+      CertVersion: " + [string]$_.cert.Version + "
+      CertSerial: " + [string]$_.cert.SerialNumber + "
+      CertSignatureAlgo: " + [string]$_.cert.SignatureAlgorithm.FriendlyName + "
+      CertPublicKey: " + [string]$_.cert.PublicKey.Key.KeyExchangeAlgorithm + "
+      CertFriendlyName: " + [string]$_.cert.FriendlyName + "
+      CertThumbprint: " + [string]$_.cert.Thumbprint + "
+      CertPrivateKey: " + [string]$_.cert.HasPrivateKey + "
+
+      CertIsCertificateAuthority: " + $isCACert + "
+      CertIsSelfSigned: " + ($_.cert.IssuerName.Name -eq $_.cert.SubjectName.Name) + "
+
+      CAVersion: " + $certCAVersionString + "
+
+      CertExpiresSoon (views/reports): " + $certExpiresSoon + "
+
+      CertStatusString: " + $certStatusString + "
+      CertStatusIgnoreUntrustedRoot " + $certStatusIgnoreUntrustedRootString + "
+      CertTimeStatus: " + $certTimeStatusString + "
+      CertLifeTimeMessage: " + $lifetimeMessage
+
+
+      $scomAPI.LogScriptEvent($scriptName, 114, 4, "DEBUG: Adding certificate..." + $certOutput)
+    }
+    #when running outside native SCOM host, use AddItem as in legacy days to have console output
+    if ($psHostConsole -eq $true) { $scomAPI.AddItem($objCertBag) }
+    else { $objCertBag }
+  }
+
+
+}
+
+function Write-CRLPropertyBags {
+  #only return the latest CRL(s) with the highest caVersion extension
+  param ($crlObjects, [string]$issuerInclude = "^.*$", [string]$issuerExclude = "^$")
+
+  #get additional properties from extensions - especially CA Version
+  $versionedCRLHigh = @{ }
+  $crlList = @()
+  $pbgdCRLs = 0
+  $crlObjects | % { `
+      #skip CRLs that match the issuer filter
+      if (($_.Issuer -imatch $issuerInclude) -and ($_.Issuer -inotmatch $issuerExclude)) {
+      # check if the szOID_CERTSRV_CA_VERSION - 1.3.6.1.4.1.311.21.1 extension is used
+      #   and learn the CA version
+      if ($_.Extensions | where { $_.OID.Value -eq "1.3.6.1.4.1.311.21.1" }) {
+        # ASN.1 decoded format of CAVersion will return V1.0 or similar
+        $caVersion = [double]((($_.Extensions | where { $_.OID.Value -eq "1.3.6.1.4.1.311.21.1" }).Format($false)).Replace('V', ''))
+      } else { $caVersion = "n/a" }
+
+      # Authority Key Identier
+      if ($_.Extensions | where { $_.OID.Value -eq "2.5.29.35" }) {
+        # ASN.1 decoded format of Authority Key Identifier
+        $authKeyId = (($_.Extensions | where { $_.OID.Value -eq "2.5.29.35" }).Format($false)).Replace('KeyID=', '')
+      } else { $authKeyId = "" }
+
+      # CRL Number
+      if ($_.Extensions | where { $_.OID.Value -eq "2.5.29.20" }) {
+        # ASN.1 decoded format of Authority Key Identifier
+        $crlNumber = ($_.Extensions | where { $_.OID.Value -eq "2.5.29.20" }).Format($false)
+      } else { $crlNumber = "" }
+
+      #evaluate the highest CAVersion number
+      if (($caVersion -ne 'n/a') -and ($caVersion -ge 0)) {
+        #add instance issues to hash
+        if (!$versionedCRLHigh.ContainsKey($_.Issuer))	{ $versionedCRLHigh.Add($_.Issuer, $caVersion) }
+        else {
+          if (($versionedCRLHigh.get_Item($_.Issuer)) -lt $caVersion) { $versionedCRLHigh.set_Item($_.Issuer, $caVersion)	}
+        }
+      }
+
+      #now add all the additional properties to an object
+      $crlObjEnh = New-Object psobject
+      $crlObjEnh | Add-Member -MemberType NoteProperty -Name crl -Value $_
+      $crlObjEnh | Add-Member -MemberType NoteProperty -Name caVersion -Value $caVersion
+      $crlObjEnh | Add-Member -MemberType NoteProperty -Name authKeyId -Value $authKeyId
+      $crlObjEnh | Add-Member -MemberType NoteProperty -Name crlNumber -Value $crlNumber
+
+      $crlList += @($crlObjEnh)
+    }
+		}
+
+  $crlList | % { `
+
+    ##skip all but the most recent caVersion CRL
+    if (($_.caVersion -eq 'n/a') -or ($_.caVersion -eq ($versionedCRLHigh.get_Item($_.crl.Issuer)))) {
+      #build a SCOM property bag
+      $objCRLBag = $scomAPI.CreatePropertyBag()
+
+      $objCRLBag.AddValue("InstanceType", "CRL")
+      $objCRLBag.AddValue("UserContext", [string]$userName)
+      $objCRLBag.AddValue("CRLVersion", [string]$_.crl.Version)
+      $objCRLBag.AddValue("CRLSigAlg", [string]$_.crl.SignatureAlgorithm.FriendlyName)
+      $objCRLBag.AddValue("CRLIssuedBy", [string]$_.crl.Issuer)
+      $objCRLBag.AddValue("CRLThisUpdate", [string]$_.crl.ThisUpdate.ToUniversalTime())
+      $objCRLBag.AddValue("CRLNextUpdate", [string]$_.crl.NextUpdate.ToUniversalTime())
+      $objCRLBag.AddValue("CRLEntries", [int64]$_.crl.RevokedCertificateCount)
+      #CERT_SHA1_HASH_PROP_ID is not exposed, hence build a key using various properties instead
+      #     as this is used only to provide SCOM object key that's fine
+      $objCRLBag.AddValue("CRLHash", [string](Get-SHA1Hash -inputString ($_.crl.Issuer + $_.authKeyId)))
+
+      #properties from extensions
+      $objCRLBag.AddValue("CRLCAVersion", [string]$_.caVersion)
+      $objCRLBag.AddValue("CRLAuthKeyId", [string]$_.authKeyId)
+      $objCRLBag.AddValue("CRLNumber", [string]$_.crlNumber)
+
+      $objCRLBag.AddValue("CRLDaysUntilUpdate", [double](($_.crl.NextUpdate - (Get-Date)).Days))
+      if ((($_.crl.NextUpdate - (Get-Date)).TotalDays) -le 0) { $objCRLBag.AddValue("CRLNeedsUpdate", "True") }
+      else { $objCRLBag.AddValue("CRLNeedsUpdate", "False") }
+
+      if ($debugScript) {
+        $crlOutput = "
+CRL
+-----------
+CRLIssuedBy: " + [string]$_.crl.Issuer + "
+
+CRLThisUpdate (UTC): " + [string]$_.crl.ThisUpdate.ToUniversalTime() + "
+CRLNextUpdate (UTC): " + [string]$_.crl.NextUpdate.ToUniversalTime() + "
+
+CRLVersion: " + [string]$_.crl.Version + "
+CRLSigAlg: " + [string]$_.crl.SignatureAlgorithm.FriendlyName + "
+CRLEntries: " + [int]$_.crl.RevokedCertificateCount + "
+CRLHash: " + [string](Get-SHA1Hash -inputString ($_.crl.Issuer + $_.authKeyId)) + "
+CRLCAVersion: " + [string]$_.caVersion + "
+CRLAuthKeyId: " + [string]$_.authKeyId + "
+CRLDaysUntilUpdate: " + [double](($_.crl.NextUpdate - (Get-Date)).Days)
+
+        $scomAPI.LogScriptEvent($scriptName, 115, 4, "DEBUG: ADDING CRL..." + $crlOutput)
+      }
+      ++$pbgdCRLs
+      #when running outside native SCOM host, use AddItem as in legacy days to have console output
+      if ($psHostConsole -eq $true) { $scomAPI.AddItem($objCRLBag) }
+      else { $objCRLBag }
+    } else {
+      if ($debugScript) {
+        $crlOutput = "
+CRL
+-----------
+CRLIssuedBy: " + [string]$_.crl.Issuer + "
+
+CRLThisUpdate: " + [string]$_.crl.ThisUpdate.ToUniversalTime() + "
+CRLNextUpdate: " + [string]$_.crl.NextUpdate.ToUniversalTime() + "
+
+CRLVersion: " + [string]$_.crl.Version + "
+CRLSigAlg: " + [string]$_.crl.SignatureAlgorithm.FriendlyName + "
+CRLEntries: " + [int]$_.crl.RevokedCertificateCount + "
+CRLHash: " + [string](Get-SHA1Hash -inputString ($_.crl.Issuer + $_.authKeyId)) + "
+CRLCAVersion: " + [string]$_.caVersion + "
+CRLAuthKeyId: " + [string]$_.authKeyId + "
+CRLDaysUntilUpdate: " + [double](($_.crl.NextUpdate - (Get-Date)).Days)
+
+        $scomAPI.LogScriptEvent($scriptName, 115, 4, "DEBUG: Skipping this CRL because its CAVersion (" + [string]$_.caVersion + ") is lower than the maximum of " + [string]($versionedCRLHigh.get_Item($_.crl.Issuer)) + $crlOutput)
+      }
+    }
+		}
+	 $script:crlObjectsReturned = $pbgdCRLs
+}
+
+# enumerating CRLs using P/Invoke on crypt32.dll
+function Get-X509CRL2 {
+  Param ([IntPtr]$context)
+
+  # This function and the here-string $x509CRL2Namespace are based on a script by
+  # Vadims Podāns - vpodans@sysadmins.lv
+  # 				http://www.sysadmins.lv/CategoryView,category,PowerShell,6.aspx
+
+  #variables
+  [IntPtr]$pByte = [IntPtr]::Zero
+  [byte]$bByte = 0
+  [IntPtr]$rgExtension = [IntPtr]::Zero
+  $ptr = [IntPtr]::Zero
+
+  #prepare empty
+  $crl = New-Object SystemCenterCentral.Utilities.Certificates.X509CRL2
+
+  $crlContext = [Runtime.InteropServices.Marshal]::PtrToStructure([IntPtr]$context, [Type][SystemCenterCentral.Utilities.Certificates.CRL_CONTEXT])
+  $crlInfo = [Runtime.InteropServices.Marshal]::PtrToStructure([IntPtr]$crlContext.pCrlInfo, [Type][SystemCenterCentral.Utilities.Certificates.CRL_INFO])
+
+  #fill
+  $crl.Version = $crlInfo.dwVersion + 1
+  $crl.Type = "Base CRL"
+  #no raw data
+  #$crl.RawData = $cBytes
+  $crl.SignatureAlgorithm = New-Object Security.Cryptography.Oid $crlInfo.SignatureAlgorithm.pszObjId
+  $CRL.ThisUpdate = [datetime]::FromFileTime($CRLInfo.ThisUpdate)
+  $CRL.NextUpdate = [datetime]::FromFileTime($CRLInfo.NextUpdate)
+  $csz = [SystemCenterCentral.Utilities.Certificates.Helper]::CertNameToStr(65537, [ref]$CRLInfo.Issuer, 3, $null, 0)
+  $psz = New-Object text.StringBuilder $csz
+  $csz = [SystemCenterCentral.Utilities.Certificates.Helper]::CertNameToStr(65537, [ref]$CRLInfo.Issuer, 3, $psz, $csz)
+  $CRL.IssuerDN = New-Object Security.Cryptography.X509Certificates.X500DistinguishedName $psz
+  $CRL.Issuer = $CRL.IssuerDN.Format(0)
+
+  #knowing just the number of entries is good enough
+  $CRL.RevokedCertificateCount = $CRLInfo.cCRLEntry
+
+  $rgExtension = $CRLInfo.rgExtension
+  if ($CRLInfo.cExtension -ge 1) {
+    $Exts = New-Object Security.Cryptography.X509Certificates.X509ExtensionCollection
+    for ($n = 0; $n -lt $CRLInfo.cExtension; $n++) {
+      $ExtEntry = [Runtime.InteropServices.Marshal]::PtrToStructure([IntPtr]$rgExtension, [Type][SystemCenterCentral.Utilities.Certificates.CERT_EXTENSION])
+      [IntPtr]$rgExtension = [SystemCenterCentral.Utilities.Certificates.Helper]::CertFindExtension($ExtEntry.pszObjId, $CRLInfo.cExtension, $CRLInfo.rgExtension)
+      $pByte = $ExtEntry.Value.pbData
+      $bBytes = $null
+      for ($m = 0; $m -lt $ExtEntry.Value.cbData; $m++) {
+        [byte[]]$bBytes += [Runtime.InteropServices.Marshal]::ReadByte($pByte)
+        ### this does not work on PoSh 2.0
+        #$pByte = [InTPtr]::Add($pByte, 1)
+        $pByte = [Int64]$pByte + [Runtime.InteropServices.Marshal]::SizeOf([Type][byte])
+      }
+      $ext = New-Object Security.Cryptography.X509Certificates.X509Extension $ExtEntry.pszObjId, @([Byte[]]$bBytes), $ExtEntry.fCritical
+      [void]$Exts.Add($ext)
+      ### this does not work on PoSh 2.0
+      #$rgExtension = [IntPtr]::Add($rgExtension, ([Runtime.InteropServices.Marshal]::SizeOf([Type][SystemCenterCentral.Utilities.Certificates.CERT_EXTENSION])))
+      $rgExtension = [long]$rgExtension + [Runtime.InteropServices.Marshal]::SizeOf([Type][SystemCenterCentral.Utilities.Certificates.CERT_EXTENSION])
+    }
+    if ($exts | ? { $_.Oid.Value -eq "2.5.29.27" }) { $CRL.Type = "Delta CRL" }
+    $CRL.Extensions = $Exts
+  }
+
+  return $crl
+}
+
+
+function Get-SHA1Hash {
+  Param ([string]$inputString)
+  $sha1CryptoServiceProvider = New-Object System.Security.Cryptography.SHA1CryptoServiceProvider
+  return [System.BitConverter]::ToString($sha1CryptoServiceProvider.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($inputString)))
+}
+
+#call main function
+Main
+</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>storeName</Name>
+                    <Value>$Config/CertStoreID$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>storeProvider</Name>
+                    <Value>$Config/StoreProvider$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>storeType</Name>
+                    <Value>$Config/StoreType$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>revocationFlag</Name>
+                    <Value>$Config/RevocationFlag$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>revocationMode</Name>
+                    <Value>$Config/RevocationMode$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>verificationFlags</Name>
+                    <Value>$Config/VerificationFlags$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>subjectIncludeRegEx</Name>
+                    <Value>$Config/SubjectIncludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>issuerIncludeRegEx</Name>
+                    <Value>$Config/IssuerIncludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>subjectExcludeRegEx</Name>
+                    <Value>$Config/SubjectExcludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>issuerExcludeRegEx</Name>
+                    <Value>$Config/IssuerExcludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>enhKeyUseIncludeRegEx</Name>
+                    <Value>$Config/EnhKeyUseIncludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>enhKeyUseExcludeRegEx</Name>
+                    <Value>$Config/EnhKeyUseExcludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>templateIncludeRegEx</Name>
+                    <Value>$Config/TemplateIncludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>templateExcludeRegEx</Name>
+                    <Value>$Config/TemplateExcludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>expiryThresholdDays</Name>
+                    <Value>$Config/ExpiryThresholdDays$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>ignoreSupersededCert</Name>
+                    <Value>$Config/IgnoreSupersededCert$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>debugParam</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="RemoteDesktopCertificateBagProbe" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+    </ModuleTypes>
+  </TypeDefinitions>
+  <Monitoring>
+    <Discoveries>
+      <Discovery ID="Proactive.CA.OCSP.Recurring.Certificates.Group.DiscoveryRule" Enabled="true" Target="Proactive.CA.OCSP.Recurring.Certificates.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Proactive.CA.OCSP.Recurring.Certificates.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <And>
+                  <Expression>
+                    <RegExExpression>
+                      <ValueExpression>
+                        <HostProperty>
+                          <MonitoringClass>$MPElement[Name="Windows!Microsoft.Windows.Computer"]$</MonitoringClass>
+                          <Property>$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Property>
+                        </HostProperty>
+                      </ValueExpression>
+                      <Operator>MatchesRegularExpression</Operator>
+                      <Pattern>(?i)OCSP</Pattern>
+                    </RegExExpression>
+                  </Expression>
+                  <Expression>
+                    <RegExExpression>
+                      <ValueExpression>
+                        <Property>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/EnhancedKeyUsageList$</Property>
+                      </ValueExpression>
+                      <Operator>MatchesRegularExpression</Operator>
+                      <Pattern>(?i)OCSP Signing</Pattern>
+                    </RegExExpression>
+                  </Expression>
+                </And>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Proactive.Computer.Certificates.Group.DiscoveryRule" Enabled="true" Target="Proactive.Computer.Certificates.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Proactive.Computer.Certificates.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <Property>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/TemplateName$</Property>
+                  </ValueExpression>
+                  <Operator>MatchesRegularExpression</Operator>
+                  <Pattern>(?i)Computer Template|DomainComputers|Domain Computers|Domain Controller|RemoteDesktop</Pattern>
+                </RegExExpression>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Proactive.Domain.Controller.Kerberos.AutoEnrollment.Certificates.Group.DiscoveryRule" Enabled="true" Target="Proactive.Domain.Controller.Kerberos.AutoEnrollment.Certificates.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Proactive.Domain.Controller.Kerberos.AutoEnrollment.Certificates.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <Property>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/TemplateName$</Property>
+                  </ValueExpression>
+                  <Operator>MatchesRegularExpression</Operator>
+                  <Pattern>(?i)DCKerberos</Pattern>
+                </RegExExpression>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Proactive.RDPAuth.Computer.Certificates.Group.DiscoveryRule" Enabled="true" Target="Proactive.RDPAuth.Computer.Certificates.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Proactive.RDPAuth.Computer.Certificates.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <Property>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/TemplateName$</Property>
+                  </ValueExpression>
+                  <Operator>MatchesRegularExpression</Operator>
+                  <Pattern>(?i)RDPAuth|RemoteDesktop</Pattern>
+                </RegExExpression>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Proactive.MECM.SCCM.ConfigMgrServerCert.Certificates.Group.DiscoveryRule" Enabled="true" Target="Proactive.MECM.SCCM.ConfigMgrServerCert.Certificates.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Proactive.MECM.SCCM.ConfigMgrServerCert.Certificates.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <Property>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/TemplateName$</Property>
+                  </ValueExpression>
+                  <Operator>MatchesRegularExpression</Operator>
+                  <Pattern>(?i)ConfigMgrServerCert</Pattern>
+                </RegExExpression>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Proactive.MECM.SCCM.ConfigMgrClientCert.Certificates.Group.DiscoveryRule" Enabled="true" Target="Proactive.MECM.SCCM.ConfigMgrClientCert.Certificates.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Proactive.MECM.SCCM.ConfigMgrClientCert.Certificates.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <Property>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/TemplateName$</Property>
+                  </ValueExpression>
+                  <Operator>MatchesRegularExpression</Operator>
+                  <Pattern>(?i)ConfigMgrClientCert</Pattern>
+                </RegExExpression>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Proactive.MECM.SCCM.ConfigMgrWebServerCert.Certificates.Group.DiscoveryRule" Enabled="true" Target="Proactive.MECM.SCCM.ConfigMgrWebServerCert.Certificates.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Proactive.MECM.SCCM.ConfigMgrWebServerCert.Certificates.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <Property>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/TemplateName$</Property>
+                  </ValueExpression>
+                  <Operator>MatchesRegularExpression</Operator>
+                  <Pattern>(?i)ConfigMgrWebServerCert</Pattern>
+                </RegExExpression>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Proactive.MECM.SCCM.ConfigMgrWinPEImages.Certificates.Group.DiscoveryRule" Enabled="true" Target="Proactive.MECM.SCCM.ConfigMgrWinPEImages.Certificates.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Proactive.MECM.SCCM.ConfigMgrWinPEImages.Certificates.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <Property>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/TemplateName$</Property>
+                  </ValueExpression>
+                  <Operator>MatchesRegularExpression</Operator>
+                  <Pattern>(?i)ConfigMgrWinPEImages</Pattern>
+                </RegExExpression>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Proactive.Internal.Issuing.CA.Group.DiscoveryRule" Enabled="true" Target="Proactive.Internal.Issuing.CA.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Proactive.Internal.Issuing.CA.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <And>
+                  <Expression>
+                    <RegExExpression>
+                      <ValueExpression>
+                        <Property>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedBy$</Property>
+                      </ValueExpression>
+                      <Operator>MatchesWildcard</Operator>
+                      <Pattern>CN=##CAINTCN## *</Pattern>
+                    </RegExExpression>
+                  </Expression>
+                  <Expression>
+                    <RegExExpression>
+                      <ValueExpression>
+                        <HostProperty>
+                          <MonitoringClass>$MPElement[Name="Windows!Microsoft.Windows.Computer"]$</MonitoringClass>
+                          <Property>$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Property>
+                        </HostProperty>
+                      </ValueExpression>
+                      <Operator>MatchesRegularExpression</Operator>
+                      <Pattern>(?i)##SERVERNAMEREGEX##</Pattern>
+                    </RegExExpression>
+                  </Expression>
+                </And>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Proactive.External.Issuing.CA.Group.DiscoveryRule" Enabled="true" Target="Proactive.External.Issuing.CA.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Proactive.External.Issuing.CA.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <And>
+                  <Expression>
+                    <RegExExpression>
+                      <ValueExpression>
+                        <Property>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedBy$</Property>
+                      </ValueExpression>
+                      <Operator>MatchesWildcard</Operator>
+                      <Pattern>CN=##CAEXTCN## *</Pattern>
+                    </RegExExpression>
+                  </Expression>
+                  <Expression>
+                    <RegExExpression>
+                      <ValueExpression>
+                        <HostProperty>
+                          <MonitoringClass>$MPElement[Name="Windows!Microsoft.Windows.Computer"]$</MonitoringClass>
+                          <Property>$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Property>
+                        </HostProperty>
+                      </ValueExpression>
+                      <Operator>MatchesRegularExpression</Operator>
+                      <Pattern>(?i)##EXTSERVERNAMEREGEX##</Pattern>
+                    </RegExExpression>
+                  </Expression>
+                </And>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Proactive.MECM.SCCM.SMSIssuing.Certificate.Group.DiscoveryRule" Enabled="true" Target="Proactive.MECM.SCCM.SMSIssuing.Certificate.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Proactive.MECM.SCCM.SMSIssuing.Certificate.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <Property>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedBy$</Property>
+                  </ValueExpression>
+                  <Operator>ContainsSubstring</Operator>
+                  <Pattern>CN=SMS Issuing</Pattern>
+                </RegExExpression>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Proactive.SolarWinds.Certificate.Group.DiscoveryRule" Enabled="true" Target="Proactive.SolarWinds.Certificate.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Proactive.SolarWinds.Certificate.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <Property>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedBy$</Property>
+                  </ValueExpression>
+                  <Operator>ContainsSubstring</Operator>
+                  <Pattern>SolarWinds</Pattern>
+                </RegExExpression>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Proactive.Splunk.Certificate.Group.DiscoveryRule" Enabled="true" Target="Proactive.Splunk.Certificate.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Proactive.Splunk.Certificate.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <Property>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedBy$</Property>
+                  </ValueExpression>
+                  <Operator>ContainsSubstring</Operator>
+                  <Pattern>Splunk</Pattern>
+                </RegExExpression>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Proactive.VEEAM.Certificate.Group.DiscoveryRule" Enabled="true" Target="Proactive.VEEAM.Certificate.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Proactive.VEEAM.Certificate.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MSIGL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <Property>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedBy$</Property>
+                  </ValueExpression>
+                  <Operator>ContainsSubstring</Operator>
+                  <Pattern>Veeam Backup Server Certificate</Pattern>
+                </RegExExpression>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="SystemCenterCentral.Utilities.Certificates.LocalScriptProbe.RemoteDesktopCertificate.Discovery" Enabled="true" Target="Utilities!SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry" ConfirmDelivery="false" Remotable="false" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="SystemCenterCentral.Utilities.Certificates.RemoteDesktopCertificate">
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertIssuedTo" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertIssuedBy" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertValidFrom" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertValidTo" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertVersion" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertSignatureAlgo" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertPublicKey" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertPrivateKey" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertFriendlyName" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertSerial" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertStatus" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertTimeStatus" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertStore" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertThumbprint" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertExpiresWithin31Days" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CAVersion" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="TemplateName" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="EnhancedKeyUsageList" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="SubjectAlternativeNameList" />
+            <Property TypeID="System!System.Entity" PropertyID="DisplayName" />
+          </DiscoveryClass>
+          <DiscoveryRelationship TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore.Hosts.SystemCenterCentral.Utilities.Certificates.Certificate" />
+        </DiscoveryTypes>
+        <DataSource ID="DataSource" TypeID="SystemCenterCentral.Utilities.Certificates.LocalScript.RemoteDesktop.Discovery.DataSource">
+          <CertStoreID>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <RevocationFlag>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationFlag$</RevocationFlag>
+          <RevocationMode>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationMode$</RevocationMode>
+          <VerificationFlags>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/VerificationFlags$</VerificationFlags>
+          <SubjectIncludeRegEx>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectIncludeRegEx$</SubjectIncludeRegEx>
+          <IssuerIncludeRegEx>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerIncludeRegEx$</IssuerIncludeRegEx>
+          <SubjectExcludeRegEx>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectExcludeRegEx$</SubjectExcludeRegEx>
+          <IssuerExcludeRegEx>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerExcludeRegEx$</IssuerExcludeRegEx>
+          <EnhKeyUseIncludeRegEx>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseIncludeRegEx$</EnhKeyUseIncludeRegEx>
+          <EnhKeyUseExcludeRegEx>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
+          <TemplateIncludeRegEx>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateIncludeRegEx$</TemplateIncludeRegEx>
+          <TemplateExcludeRegEx>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+          <IgnoreSupersededCert>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IgnoreSupersededCert$</IgnoreSupersededCert>
+          <ExpiryThresholdDays>31</ExpiryThresholdDays>
+          <DiscoverSupersededCACertificates>false</DiscoverSupersededCACertificates>
+          <Debug>false</Debug>
+          <IntervalSeconds>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildDiscoveryInterval$</IntervalSeconds>
+          <SyncTime>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/Sync$</SyncTime>
+          <SpreadInitializationOverInterval>1800</SpreadInitializationOverInterval>
+          <TimeoutSeconds>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildScriptTimeout$</TimeoutSeconds>
+          <ClassId>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.NonRootCertificate"]$</ClassId>
+          <InstanceSettings>
+            <Settings>
+              <Setting>
+                <Name>$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Name>
+                <Value>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</Name>
+                <Value>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertSerial$</Name>
+                <Value>$Data/Property[@Name='CertSerial']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</Name>
+                <Value>$Data/Property[@Name='CertThumbprint']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertVersion$</Name>
+                <Value>$Data/Property[@Name='CertVersion']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertSignatureAlgo$</Name>
+                <Value>$Data/Property[@Name='CertSignatureAlgo']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedBy$</Name>
+                <Value>$Data/Property[@Name='CertIssuedBy']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertValidFrom$</Name>
+                <Value>$Data/Property[@Name='CertValidFrom']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertValidTo$</Name>
+                <Value>$Data/Property[@Name='CertValidTo']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedTo$</Name>
+                <Value>$Data/Property[@Name='CertIssuedTo']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertPublicKey$</Name>
+                <Value>$Data/Property[@Name='CertPublicKey']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertFriendlyName$</Name>
+                <Value>$Data/Property[@Name='CertFriendlyName']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertPrivateKey$</Name>
+                <Value>$Data/Property[@Name='CertPrivateKey']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertStatus$</Name>
+                <Value>$Data/Property[@Name='CertStatus']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertTimeStatus$</Name>
+                <Value>$Data/Property[@Name='CertTimeStatus']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertExpiresWithin31Days$</Name>
+                <Value>$Data/Property[@Name='CertExpiresSoon']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CAVersion$</Name>
+                <Value>$Data/Property[@Name='CAVersion']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/CertStore$</Name>
+                <Value>$Target/Property[Type="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/TemplateName$</Name>
+                <Value>$Data[Default='n/a']/Property[@Name='TemplateName']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="System!System.Entity"]/DisplayName$</Name>
+                <Value>Cert $Data/Property[@Name='CertIssuedTo']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/EnhancedKeyUsageList$</Name>
+                <Value>$Data/Property[@Name='EnhancedKeyUsageList']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate"]/SubjectAlternativeNameList$</Name>
+                <Value>$Data/Property[@Name='CertSAN']$</Value>
+              </Setting>
+            </Settings>
+          </InstanceSettings>
+          <Expression>
+            <And>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='CertThumbprint']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>NotEqual</Operator>
+                  <ValueExpression>
+                    <Value Type="String" />
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='CertIsCertificateAuthority']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">False</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='CertIsSelfSigned']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">False</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </And>
+          </Expression>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.RemoteDesktop.Discovery" Enabled="false" Target="SC!Microsoft.SystemCenter.HealthService" ConfirmDelivery="false" Remotable="false" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry">
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="CertStoreName" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="CertStoreID" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="StoreProvider" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="StoreType" />
+            <Property TypeID="System!System.Entity" PropertyID="DisplayName" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="Sync" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="ChildScriptTimeout" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="ChildMonitorInterval" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="ChildDiscoveryInterval" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="RevocationFlag" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="RevocationMode" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="VerificationFlags" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="SubjectIncludeRegEx" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="IssuerIncludeRegEx" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="SubjectExcludeRegEx" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="EnhKeyUseIncludeRegEx" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="IssuerExcludeRegEx" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="EnhKeyUseExcludeRegEx" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="TemplateIncludeRegEx" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="TemplateExcludeRegEx" />
+            <Property TypeID="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="IgnoreSupersededCert" />
+          </DiscoveryClass>
+          <DiscoveryRelationship TypeID="Utilities!Microsoft.Windows.Computer.Hosts.SystemCenterCentral.Utilities.Certificates.CertificateStore" />
+        </DiscoveryTypes>
+        <DataSource ID="DS" TypeID="SystemCenterCentral.Utilities.Certificates.Custom.CertificateStoreDiscoveryProvider">
+          <ComputerName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/NetworkName$</ComputerName>
+          <Frequency>28800</Frequency>
+          <CertStoreID>Remote Desktop</CertStoreID>
+          <StoreProvider>SystemRegistry</StoreProvider>
+          <StoreType>LocalMachine</StoreType>
+          <ComputerPrincipalName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerPrincipalName>
+          <CertStoreName>Remote Desktop</CertStoreName>
+          <ChildMonitorSync> - </ChildMonitorSync>
+          <ChildMonitorInterval>14110</ChildMonitorInterval>
+          <ChildDiscoveryInterval>42330</ChildDiscoveryInterval>
+          <ChildScriptTimeout>300</ChildScriptTimeout>
+          <RevocationFlag>EntireChain</RevocationFlag>
+          <RevocationMode>Online</RevocationMode>
+          <VerificationFlags>IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown</VerificationFlags>
+          <SubjectIncludeRegEx>^.*$</SubjectIncludeRegEx>
+          <IssuerIncludeRegEx>^.*$</IssuerIncludeRegEx>
+          <SubjectExcludeRegEx>^$</SubjectExcludeRegEx>
+          <IssuerExcludeRegEx>^$</IssuerExcludeRegEx>
+          <EnhKeyUseIncludeRegEx>^(|.+)$</EnhKeyUseIncludeRegEx>
+          <EnhKeyUseExcludeRegEx>^1\.3\.6\.1\.4\.1\.311\.47\.1\.(1|3)$</EnhKeyUseExcludeRegEx>
+          <TemplateIncludeRegEx>^(|.+)$</TemplateIncludeRegEx>
+          <TemplateExcludeRegEx>\n</TemplateExcludeRegEx>
+          <IgnoreSupersededCert>true</IgnoreSupersededCert>
+          <DisplayName>Remote Desktop Certificate Store</DisplayName>
+        </DataSource>
+      </Discovery>
+    </Discoveries>
+    <Overrides>
+      <DiscoveryConfigurationOverride ID="Override.SpreadInitialization.SystemCenterCentral.Utilities.Certificates.LocalScriptProbe.NonRootCertificate.Discovery" Context="Utilities!SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry" Enforced="false" Discovery="Utilities!SystemCenterCentral.Utilities.Certificates.LocalScriptProbe.NonRootCertificate.Discovery" Parameter="SpreadInitializationOverInterval" Module="DataSource">
+        <Value>1800</Value>
+      </DiscoveryConfigurationOverride>
+      <DiscoveryPropertyOverride ID="Override.Enable.SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.My.Discovery" Context="SC!Microsoft.SystemCenter.HealthService" Enforced="false" Discovery="Utilities!SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.My.Discovery" Property="Enabled">
+        <Value>true</Value>
+      </DiscoveryPropertyOverride>
+      <DiscoveryPropertyOverride ID="Override.Enable.SystemCenterCentral.Utilities.Certificates.LocalScriptProbe.SelfSignedCertificate.Discovery" Context="Utilities!SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry" Enforced="false" Discovery="Utilities!SystemCenterCentral.Utilities.Certificates.LocalScriptProbe.SelfSignedCertificate.Discovery" Property="Enabled">
+        <Value>true</Value>
+      </DiscoveryPropertyOverride>
+      <MonitorConfigurationOverride ID="Override.LifetimeThreshold.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Context="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" ContextInstance="4af73d32-7c66-173f-8a05-5ecb40b1273f" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Parameter="LifetimeThreshold">
+        <Value>60</Value>
+      </MonitorConfigurationOverride>
+      <MonitorConfigurationOverride ID="Override.LifetimeThreshold.Group.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Context="Proactive.Computer.Certificates.Group" ContextInstance="4af73d31-7c66-173f-8a05-5ecb40b1273f" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Parameter="LifetimeThreshold">
+        <Value>30</Value>
+      </MonitorConfigurationOverride>
+      <MonitorConfigurationOverride ID="Override.LifetimeThreshold.Proactive.Internal.Issuing.CA.Group.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Context="Proactive.Internal.Issuing.CA.Group" ContextInstance="44c5c4e2-b02f-b0f6-aa87-0d12e9b41642" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Parameter="LifetimeThreshold">
+        <Value>30</Value>
+      </MonitorConfigurationOverride>
+      <MonitorConfigurationOverride ID="Override.LifetimeThreshold.Proactive.External.Issuing.CA.Group.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Context="Proactive.External.Issuing.CA.Group" ContextInstance="e870e111-109c-a0c9-c892-173d086e8c7d" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Parameter="LifetimeThreshold">
+        <Value>60</Value>
+      </MonitorConfigurationOverride>
+      <MonitorPropertyOverride ID="Override.Disable.Group.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Context="Utilities!SystemCenterCentral.Utilities.Certificates.Certificate" ContextInstance="4af73d32-7c66-173f-8a04-5ecb40b1273f" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Property="Enabled">
+        <Value>false</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Severity.MECM.ConfigMgrClientCert.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Context="Proactive.MECM.SCCM.ConfigMgrClientCert.Certificates.Group" ContextInstance="06bc0a9e-48a1-d265-8a06-3b029e77aee4" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Property="AlertSeverity">
+        <Value>Warning</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Severity.MECM.ConfigMgrServerCert.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Context="Proactive.MECM.SCCM.ConfigMgrServerCert.Certificates.Group" ContextInstance="5210bbfb-3eb0-1838-d988-3cb947e1b2e8" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Property="AlertSeverity">
+        <Value>Warning</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Severity.MECM.ConfigMgrWebServerCert.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Context="Proactive.MECM.SCCM.ConfigMgrWebServerCert.Certificates.Group" ContextInstance="8c1d2310-86b9-1ec5-3a71-9999314e6c4d" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Property="AlertSeverity">
+        <Value>Warning</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Severity.MECM.ConfigMgrWinPEImagesCert.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Context="Proactive.MECM.SCCM.ConfigMgrWinPEImages.Certificates.Group" ContextInstance="f767fc75-ff57-9ec0-7447-28714e2a562d" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Property="AlertSeverity">
+        <Value>Warning</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Severity.RDPAuthComputerCerts.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Context="Proactive.RDPAuth.Computer.Certificates.Group" ContextInstance="a3ca0209-44f7-449b-4fc2-03b794305375" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Property="AlertSeverity">
+        <Value>Warning</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Severity.DomainControllerKerberosAutoEnrollmentCerts.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Context="Proactive.Domain.Controller.Kerberos.AutoEnrollment.Certificates.Group" ContextInstance="8f47adc3-8058-3994-8fb6-df1d40be09c8" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Property="AlertSeverity">
+        <Value>Warning</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Severity.Proactive.Computer.Certs.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Context="Proactive.Computer.Certificates.Group" ContextInstance="2ad225e9-84d4-b3ac-a91e-1dcd8b541863" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Property="AlertSeverity">
+        <Value>Warning</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Severity.Proactive.DC.Kerberos.AutoEnrollmentCerts.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Context="Proactive.Domain.Controller.Kerberos.AutoEnrollment.Certificates.Group" ContextInstance="8f47adc3-8058-3994-8fb6-df1d40be09c8" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="AlertSeverity">
+        <Value>Warning</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Severity.Proactive.Computer.Certificates.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Context="Proactive.Computer.Certificates.Group" ContextInstance="2ad225e9-84d4-b3ac-a91e-1dcd8b541863" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="AlertSeverity">
+        <Value>Warning</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Severity.Proactive.MECM.ConfigMgrClientCerts.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Context="Proactive.MECM.SCCM.ConfigMgrClientCert.Certificates.Group" ContextInstance="06bc0a9e-48a1-d265-8a06-3b029e77aee4" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="AlertSeverity">
+        <Value>Warning</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Severity.Proactive.MECM.ConfigMgrServerCerts.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Context="Proactive.MECM.SCCM.ConfigMgrServerCert.Certificates.Group" ContextInstance="5210bbfb-3eb0-1838-d988-3cb947e1b2e8" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="AlertSeverity">
+        <Value>Warning</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Severity.Proactive.MECM.ConfigMgrWebServerCerts.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Context="Proactive.MECM.SCCM.ConfigMgrWebServerCert.Certificates.Group" ContextInstance="8c1d2310-86b9-1ec5-3a71-9999314e6c4d" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="AlertSeverity">
+        <Value>Warning</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Severity.Proactive.MECM.ConfigMgrWinPEImagesCerts.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Context="Proactive.MECM.SCCM.ConfigMgrWinPEImages.Certificates.Group" ContextInstance="f767fc75-ff57-9ec0-7447-28714e2a562d" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="AlertSeverity">
+        <Value>Warning</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.SCCM.Disabled.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Context="Proactive.MECM.SCCM.SMSIssuing.Certificate.Group" ContextInstance="b2a1e441-8aa9-2966-f882-b93cce921c60" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="Enabled">
+        <Value>false</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.SolarWinds.Disabled.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Context="Proactive.SolarWinds.Certificate.Group" ContextInstance="d04c72b8-f39c-757c-c48f-4c14ab4087ef" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="Enabled">
+        <Value>false</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.VEEAM.Disabled.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Context="Proactive.VEEAM.Certificate.Group" ContextInstance="075f828b-c7aa-cd59-c6c9-79c134e3f987" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="Enabled">
+        <Value>false</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Splunk.Disabled.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Context="Proactive.Splunk.Certificate.Group" ContextInstance="c4ef39fe-488f-fc23-e5da-3060b6687ddc" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="Enabled">
+        <Value>false</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.SolarWindsGroup.Disable.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Context="Proactive.SolarWinds.Certificate.Group" ContextInstance="85a01997-be7f-a8f2-800f-924afb9e1556" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="Enabled">
+        <Value>false</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.Splunk.Disable.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Context="Proactive.Splunk.Certificate.Group" ContextInstance="a06304d4-31a0-76c0-df56-65d70751c504" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="Enabled">
+        <Value>false</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="Override.VEEAM.Disable.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Context="Proactive.VEEAM.Certificate.Group" ContextInstance="74aa7788-f8b1-111d-678d-9308eba544dc" Enforced="false" Monitor="Utilities!SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="Enabled">
+        <Value>false</Value>
+      </MonitorPropertyOverride>
+    </Overrides>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="false">
+      <DisplayStrings>
+        <DisplayString ElementID="Proactive.PKI.System.Center.Central.Utilities.Certificates.Customizations">
+          <Name>Proactive PKI System Center Central Utilities Certificates Customizations</Name>
+          <Description>
+v1.0.1.2   6 Jul 2023 Splunk, SMSIssued, and VEEAM certificate validity monitor overrides
+v1.0.1.0  24 Apr 2023 Override groups for invalid certificate alerts, additional certificate store workflows for Remote Desktop registry store
+v1.0.0.8  13 Apr 2023 Updated with Remote Desktop store DS/PA/Discovery per Cyber team request
+v1.0.0.5  24 Feb 2023 Updated with Self-signed certs for SCCM/MECM, SolarWinds, Splunk, and VEEAM
+v1.0.0.4  25 Jan 2023 Updated to human readable content, created Issuer/regex groups for different cert alert actions
+v1.0.0.1  19 Sep 2022 Updated for Computer cert template group
+v1.0.0.0   3 Aug 2020 Created PKI certificate customizations pack</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.CA.OCSP.Recurring.Certificates.Group">
+          <Name>Proactive CA OCSP recurring certificates</Name>
+          <Description>Created 1 Oct 2020 - KWJ - Group for FF10/11 two week auto-renewed certificates</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.Computer.Certificates.Group">
+          <Name>Proactive Domain Member Auto-enrollment Computer certificates</Name>
+          <Description>16 SEP 2022 - KWJ - Created 'computer - Proactive' group as these are handled by CA cert template</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.Domain.Controller.Kerberos.AutoEnrollment.Certificates.Group">
+          <Name>Proactive Domain Controller (DC) Kerberos authentication Auto-enrollment certificates</Name>
+          <Description>18 Nov 2022 - KWJ - PKI Certificate group customization</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.RDPAuth.Computer.Certificates.Group">
+          <Name>Proactive RDPAuth Computer Certificates</Name>
+          <Description>18 Nov 2022 - KWJ - PKI Certificate group customization</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.MECM.SCCM.ConfigMgrServerCert.Certificates.Group">
+          <Name>Proactive MECM SCCM ConfigMgrServerCert Auto-enrollment Computer Certificates</Name>
+          <Description>18 Nov 2022 - KWJ - PKI Certificate group customization</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.MECM.SCCM.ConfigMgrClientCert.Certificates.Group">
+          <Name>Proactive MECM SCCM ConfigMgrClientCert Auto-enrollment Computer Certificates</Name>
+          <Description>18 Nov 2022 - KWJ - PKI Certificate group customization </Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.MECM.SCCM.ConfigMgrWebServerCert.Certificates.Group">
+          <Name>Proactive MECM SCCM ConfigMgrWebServerCert Auto-enrollment Computer Certificates</Name>
+          <Description>18 Nov 2022 - KWJ - PKI Certificate group customization</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.MECM.SCCM.ConfigMgrWinPEImages.Certificates.Group">
+          <Name>Proactive MECM SCCM ConfigMgrWinPEImages Auto-enrollment Computer Certificates</Name>
+          <Description>18 Nov 2022 - KWJ - PKI Certificate group customization</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.Internal.Issuing.CA.Group">
+          <Name>Proactive internal Issuing CA certificates</Name>
+          <Description>Created to break out alerts for internal issued certificates</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.External.Issuing.CA.Group">
+          <Name>Proactive external Issuing CA certificates</Name>
+          <Description>Created to break out alerts for external issued certificates</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.MECM.SCCM.SMSIssuing.Certificate.Group">
+          <Name>Proactive MECM SCCM ConfigMgr SMS Issuing self-signed certs</Name>
+          <Description>22 Feb 2023 - KWJ - Added to remove Certificate is invalid based on MECM managed certificates</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.SolarWinds.Certificate.Group">
+          <Name>Proactive SolarWinds self-signed certs</Name>
+          <Description>22 Feb 2023 - KWJ - Added to remove Certificate is invalid based on SolarWinds managed certificates</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.Splunk.Certificate.Group">
+          <Name>Proactive Splunk self-signed certs</Name>
+          <Description>22 Feb 2023 - KWJ - Added to remove Certificate is invalid based on Splunk managed certificates</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.VEEAM.Certificate.Group">
+          <Name>Proactive VEEAM self-signed certificates</Name>
+          <Description>22 Feb 2023 - KWJ - Added to remove Certificate is invalid based on Veeam Backup Server Certificates</Description>
+        </DisplayString>
+
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.RemoteDesktopCertificate">
+          <Name>Proactive Remote Desktop certificates</Name>
+          <Description>24 Apr 2023 - KWJ - Added Remote Desktop certificate class</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.LocalScript.RemoteDesktop.Discovery.DataSource">
+          <Name>Proactive PKI RemoteDesktop Discovery DataSource</Name>
+          <Description>This discovers Remote Desktop certificate stored certificates</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Custom.CertificateStoreDiscoveryProvider">
+          <Name>Proactive PKI RemoteDesktop Certificate Store Discovery DataSource</Name>
+          <Description>This discovers Remote Desktop certificate stored certificates</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.RemoteDesktop.Certificates.ScriptProbe">
+          <Name>Proactive PKI RemoteDesktop ProbeAction</Name>
+          <Description>This ProbeAction PA discovers Remote Desktop certificate stored certificates</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.CA.OCSP.Recurring.Certificates.Group.DiscoveryRule">
+          <Name>Populate Proactive CA OCSP recurring certificates</Name>
+          <Description>This discovery rule populates the group 'Proactive CA OCSP recurring certificates'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.Computer.Certificates.Group.DiscoveryRule">
+          <Name>Populate Proactive Computer certificates</Name>
+          <Description>This discovery rule populates the group 'Proactive Computer certificates'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.Domain.Controller.Kerberos.AutoEnrollment.Certificates.Group.DiscoveryRule">
+          <Name>Populate Proactive Domain Controller (DC) Kerberos authentication certificates</Name>
+          <Description>This discovery rule populates the group 'Proactive Domain Controller (DC) Kerberos authentication certificates'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.RDPAuth.Computer.Certificates.Group.DiscoveryRule">
+          <Name>Populate Proactive RDPAuth Computer Certificates</Name>
+          <Description>This discovery rule populates the group 'Proactive RDPAuth Computer Certificates'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.MECM.SCCM.ConfigMgrServerCert.Certificates.Group.DiscoveryRule">
+          <Name>Populate Proactive MECM SCCM ConfigMgr Auto-enrollment Computer Certificates  </Name>
+          <Description>This discovery rule populates the group 'Proactive MECM SCCM ConfigMgr Auto-enrollment Computer Certificates  '</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.MECM.SCCM.ConfigMgrClientCert.Certificates.Group.DiscoveryRule">
+          <Name>Populate Proactive MECM SCCM ConfigMgrClientCert Auto-enrollment Computer Certificates</Name>
+          <Description>This discovery rule populates the group 'Proactive MECM SCCM ConfigMgrClientCert Auto-enrollment Computer Certificates'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.MECM.SCCM.ConfigMgrWebServerCert.Certificates.Group.DiscoveryRule">
+          <Name>Populate Proactive MECM SCCM ConfigMgrWebServerCert Auto-enrollment Computer Certificates</Name>
+          <Description>This discovery rule populates the group 'Proactive MECM SCCM ConfigMgrWebServerCert Auto-enrollment Computer Certificates'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.MECM.SCCM.ConfigMgrWinPEImages.Certificates.Group.DiscoveryRule">
+          <Name>Populate Proactive MECM SCCM ConfigMgrWinPEImages Auto-enrollment Computer Certificates</Name>
+          <Description>This discovery rule populates the group 'Proactive MECM SCCM ConfigMgrWinPEImages Auto-enrollment Computer Certificates'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.Internal.Issuing.CA.Group.DiscoveryRule">
+          <Name>Populate 'Proactive.Internal.Issuing.CA.Group' certificates</Name>
+          <Description>This discovery rule populates the group 'Proactive.Internal.Issuing.CA.Group'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.External.Issuing.CA.Group.DiscoveryRule">
+          <Name>Populate 'Proactive.External.Issuing.CA.Group' certificates</Name>
+          <Description>This discovery rule populates the group 'Proactive.External.Issuing.CA.Group'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.MECM.SCCM.SMSIssuing.Certificate.Group.DiscoveryRule">
+          <Name>Populate Proactive MECM SCCM ConfigMgr SMS Issuing self-signed certs</Name>
+          <Description>This discovery rule populates the group 'Proactive MECM SCCM ConfigMgr SMS Issuing self-signed certs'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.SolarWinds.Certificate.Group.DiscoveryRule">
+          <Name>Populate Proactive SolarWinds self-signed certs</Name>
+          <Description>This discovery rule populates the group 'Proactive SolarWinds self-signed certs'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.Splunk.Certificate.Group.DiscoveryRule">
+          <Name>Populate Proactive Splunk self-signed certs</Name>
+          <Description>This discovery rule populates the group 'Proactive Splunk self-signed certs'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Proactive.VEEAM.Certificate.Group.DiscoveryRule">
+          <Name>Populate Proactive VEEAM self-signed certificates</Name>
+          <Description>This discovery rule populates the group 'Proactive VEEAM self-signed certificates'</Description>
+        </DisplayString>
+
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.LocalScriptProbe.RemoteDesktopCertificate.Discovery">
+          <Name>Discover RemoteDesktop Certificates (locally)</Name>
+          <Description>Discovers Remote Desktop certificates. This discovery is enabled by default.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.RemoteDesktop.Discovery">
+          <Name>Discovery of local computer's certificate store "Remote Desktop" (registry)</Name>
+          <Description>Discovers the certificate store 'Remote Desktop' respectively 'Remote Desktop' (of the computer). This discovery is enabled by default for Windows Server 2012 and 2012 R2.</Description>
+        </DisplayString>
+
+        <DisplayString ElementID="Override.SpreadInitialization.SystemCenterCentral.Utilities.Certificates.LocalScriptProbe.NonRootCertificate.Discovery">
+          <Name>NotUsed</Name>
+          <Description>30 Nov 2021 - KWJ - Changing to 30 minutes for discovery causing 2115's with slow logical disk errors for OpsDB</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Enable.SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.My.Discovery">
+          <Name>NotUsed</Name>
+          <Description>3 Aug 2020 - KWJ - Enabled PKI certificate discovery</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Enable.SystemCenterCentral.Utilities.Certificates.LocalScriptProbe.SelfSignedCertificate.Discovery">
+          <Name>NotUsed</Name>
+          <Description>3 Aug 2020 - KWJ - Enabled PKI certificate discovery</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Disable.Group.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor">
+          <Name>NotUsed</Name>
+          <Description>19 Aug 2020 - KWJ - Disabled self-signed certificate</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.LifetimeThreshold.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor">
+          <Name>NotUsed</Name>
+          <Description>12 Sep 2022 - KWJ - Changed Lifetime expiration field from21 to 60 per NOSC/Gov't request.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.LifetimeThreshold.Group.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor">
+          <Name>NotUsed</Name>
+          <Description>16 SEP 2022 - KWJ - Testing Brian's request for certs -LT 42 days</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.LifetimeThreshold.Proactive.Internal.Issuing.CA.Group.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor">
+          <Name>NotUsed</Name>
+          <Description>Internal CA templated requests at 6 weeks, manual intervention if -LT 36 days</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.LifetimeThreshold.Proactive.External.Issuing.CA.Group.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor">
+          <Name>NotUsed</Name>
+          <Description>16 SEP 2022 - KWJ - Testing Brian's request for certs -LT 60 days</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Severity.MECM.ConfigMgrClientCert.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor">
+          <Name>NotUsed</Name>
+          <Description>18 Nov 2022 - KWJ - Changing NON-Tier1 applications to Warning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Severity.MECM.ConfigMgrServerCert.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor">
+          <Name>NotUsed</Name>
+          <Description>18 Nov 2022 - KWJ - Changing NON-Tier1 applications to Warning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Severity.MECM.ConfigMgrWebServerCert.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor">
+          <Name>NotUsed</Name>
+          <Description>18 Nov 2022 - KWJ - Changing NON-Tier1 applications to Warning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Severity.MECM.ConfigMgrWinPEImagesCert.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor">
+          <Name>NotUsed</Name>
+          <Description>18 Nov 2022 - KWJ - Changing NON-Tier1 applications to Warning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Severity.RDPAuthComputerCerts.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor">
+          <Name>NotUsed</Name>
+          <Description>18 Nov 2022 - KWJ - Changing NON-Tier1 applications to Warning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Severity.DomainControllerKerberosAutoEnrollmentCerts.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor">
+          <Name>NotUsed</Name>
+          <Description>18 Nov 2022 - KWJ - Changing NON-Tier1 applications to Warning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Severity.Proactive.Computer.Certs.SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor">
+          <Name>NotUsed</Name>
+          <Description>18 Nov 2022 - KWJ - Changing NON-Tier1 applications to Warning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Severity.Proactive.DC.Kerberos.AutoEnrollmentCerts.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor">
+          <Name>NotUsed</Name>
+          <Description>18 Nov 2022 - KWJ - Changing NON-Tier1 applications to Warning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Severity.Proactive.Computer.Certificates.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor">
+          <Name>NotUsed</Name>
+          <Description>18 Nov 2022 - KWJ - Changing NON-Tier1 applications to Warning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Severity.Proactive.MECM.ConfigMgrClientCerts.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor">
+          <Name>NotUsed</Name>
+          <Description>18 Nov 2022 - KWJ - Changing NON-Tier1 applications to Warning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Severity.Proactive.MECM.ConfigMgrServerCerts.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor">
+          <Name>NotUsed</Name>
+          <Description>18 Nov 2022 - KWJ - Changing NON-Tier1 applications to Warning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Severity.Proactive.MECM.ConfigMgrWebServerCerts.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor">
+          <Name>NotUsed</Name>
+          <Description>18 Nov 2022 - KWJ - Changing NON-Tier1 applications to Warning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Severity.Proactive.MECM.ConfigMgrWinPEImagesCerts.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor">
+          <Name>NotUsed</Name>
+          <Description>18 Nov 2022 - KWJ - Changing NON-Tier1 applications to Warning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.SCCM.Disabled.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor">
+          <Name>NotUsed</Name>
+          <Description>23 Feb 2023 - KWJ - Disabling self-signed 'cert is invalid' alerts</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.SolarWinds.Disabled.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor">
+          <Name>NotUsed</Name>
+          <Description>23 Feb 2023 - KWJ - Disabling self-signed 'cert is invalid' alerts</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.VEEAM.Disabled.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor">
+          <Name>NotUsed</Name>
+          <Description>23 Feb 2023 - KWJ - Disabling self-signed 'cert is invalid' alerts</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.SolarWindsGroup.Disable.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor">
+          <Name>NotUsed</Name>
+          <Description>24 Apr 2023 - KWJ - Disabling SolarWinds self-signed cert alerts</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.Splunk.Disable.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor">
+          <Name>NotUsed</Name>
+          <Description>19 May 2023 - Disabling for Splunk certs</Description>
+        </DisplayString>
+        <DisplayString ElementID="Override.VEEAM.Disable.SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor">
+          <Name>NotUsed</Name>
+          <Description>19 May 2023 - Disabling VEEAM self-signed certificates</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPack>
