@@ -2,7 +2,7 @@
 
 Download here
 
-# Proactive.PKI.System.Center.Central.Utilities.Certificates.Customizations - Management pack provides multiple capabilities, including: Custom groups for multiple roles and applications, overrides which allow differentiation for all groups, organizational differences for internal and external certificate expiration alerts, validity, and self-signed certificates for multiple applications.
+Proactive.PKI.System.Center.Central.Utilities.Certificates.Customizations - Management pack provides multiple capabilities, including: Custom groups for multiple roles and applications, overrides which allow differentiation for all groups, organizational differences for internal and external certificate expiration alerts, validity, and self-signed certificates for multiple applications.
 
 # Version History:
 v1.0.1.2   6 Jul 2023 Splunk, SMSIssued, and VEEAM certificate validity monitor overrides
