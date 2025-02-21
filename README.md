@@ -7,16 +7,6 @@ Download Instructions ([here](https://github.com/theKevinJustin/PKIAddendum/blob
 Proactive.PKI.System.Center.Central.Utilities.Certificates.Customizations - 
 Management pack provides multiple capabilities, including: Custom groups for multiple roles and applications, overrides which allow differentiation for all groups, organizational differences for internal and external certificate expiration alerts, validity, and self-signed certificates for multiple applications.
 
-Pack functionality includes:
-	• Groups created to Discover and monitor certificates in server certificate stores
-	• Critical alert for expired certificates
-	• Warning alert for invalid certificate chains, self-signed certificates, and revoked scenarios
-	• PKI certificate monitoring includes views in SCOM Console, for valid, about to expire, invalid, and more
-	• Update groups that utilize existing CA Auto-enrollment templates to help administrators know when manual intervention is required that template did NOT replace certificate
-	• Updates default 'about to expire' alerts to 60 day warning alerts, 30 day critical
-		The groups allow breakout for DC, RDP, OCSP, Internal and external issued certificates
-Allows monitoring to be adjusted per organizational standards and procedures.
-
 ![image](https://github.com/user-attachments/assets/aebb3abd-822c-40ec-aed9-84435d0787b1)
 
 
