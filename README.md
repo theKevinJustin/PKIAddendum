@@ -1,8 +1,11 @@
 # Proactive.PKI.System.Center.Central.Utilities.Certificates.Customizations 1.0.1.2
 
-Download here
+Download ([here](https://github.com/theKevinJustin/PKIAddendum/blob/main/Proactive.PKI.System.Center.Central.Utilities.Certificates.Customizations.xml))
 
-Proactive.PKI.System.Center.Central.Utilities.Certificates.Customizations - Management pack provides multiple capabilities, including: Custom groups for multiple roles and applications, overrides which allow differentiation for all groups, organizational differences for internal and external certificate expiration alerts, validity, and self-signed certificates for multiple applications.
+Download Instructions ([here](https://github.com/theKevinJustin/PKIAddendum/blob/main/21%20Feb%202025%20-%20Updating%20PKI%20addendum.pdf))
+
+Proactive.PKI.System.Center.Central.Utilities.Certificates.Customizations - 
+Management pack provides multiple capabilities, including: Custom groups for multiple roles and applications, overrides which allow differentiation for all groups, organizational differences for internal and external certificate expiration alerts, validity, and self-signed certificates for multiple applications.
 
 Pack functionality includes:
 	• Groups created to Discover and monitor certificates in server certificate stores
