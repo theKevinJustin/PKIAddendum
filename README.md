@@ -15,7 +15,9 @@ Pack functionality includes:
 	• Update groups that utilize existing CA Auto-enrollment templates to help administrators know when manual intervention is required that template did NOT replace certificate
 	• Updates default 'about to expire' alerts to 60 day warning alerts, 30 day critical
 		The groups allow breakout for DC, RDP, OCSP, Internal and external issued certificates
-Allows monitoring to be adjusted per organizational standards and procedures.![image](https://github.com/user-attachments/assets/aebb3abd-822c-40ec-aed9-84435d0787b1)
+Allows monitoring to be adjusted per organizational standards and procedures.
+
+![image](https://github.com/user-attachments/assets/aebb3abd-822c-40ec-aed9-84435d0787b1)
 
 
 # Version History:
